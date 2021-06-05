@@ -4,10 +4,10 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
 import {Cookies} from 'react-cookie';
 import TopNavBar from '../ComplaintContainer/TopNavBar';
 import Axios from 'axios';
-import { MDBIcon } from "mdbreact"
+import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import Grid from '@material-ui/core/Grid';
 
-
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 const useStyles = makeStyles((theme) => ({
     rootCard:{
         marginLeft:"30px",
@@ -88,9 +88,9 @@ const ProfilePage = (props) => {
         <Grid item xs={12} md={6}>
             <div className={classes.rootCard}>
 
-                            
-                <h3><MDBIcon fab icon="jenkins" /></h3>
-                <text>Be The Best Version Of You.</text><hr />
+                <EmojiPeopleIcon />
+
+                <text style={{color:"purple"}} >Be The Best Version Of You.</text><hr />
 
                 <div className={classes.textinCard}>
                     <h5>Hi {ProfilePage.username} </h5>
@@ -104,9 +104,8 @@ const ProfilePage = (props) => {
              <Grid item xs={12} md={6}>
              <div className={classes.innercard}>
                   
-            
-                  <h3> <MDBIcon far icon="chart-bar" /></h3>
-                  <text>Little By Little Becomes A Lot</text><hr />
+                    <EqualizerIcon />
+                  <text style={{color:"purple"}} >Little By Little Becomes A Lot</text><hr />
                   
                   <h5>Total Complaintes:{totalComplaintsCount}</h5>
                   {/* <h5>Responded Com:</h5> */}

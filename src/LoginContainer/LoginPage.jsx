@@ -84,7 +84,7 @@ function LoginPage(){
           
      
                 <h3 style={{textAlign:"center",opacity:"2",color:"white",fontSize:"30px"}}>Grievence System</h3><br />
-            </div>
+            </div><br /><br />
     
                 <div className="login1" style={{width:'16rem',textAlign:'center'}}>
                     <Form onSubmit={submitHandler}>
