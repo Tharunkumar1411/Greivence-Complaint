@@ -1,0 +1,52 @@
+.Admintitle {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: lighter;
+    color: blueviolet;
+}
+
+#BottomNavigation {
+    margin: spacing(1);
+}
+
+#dropdown-basic {
+    background-color: none;
+    border-radius: 25px;
+    background: none;
+    color: rgb(29, 21, 21);
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    margin: 15px
+}
+
+.panelDesing {
+    width: 100%;
+}
+
+#complaintBox {
+    outline: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.cardDesi {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.panelDesing {
+    width: 100%;
+}
+
+.Tabdesign {
+    border: none;
+    background-color: c;
+}
+
+.designComplaint {
+    width: 50%;
+    height: 100px;
+}

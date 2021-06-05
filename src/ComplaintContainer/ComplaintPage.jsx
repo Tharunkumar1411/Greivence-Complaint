@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import './ComplaintPage.css'
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
-import { Container, Row, Col} from 'reactstrap';
+import { Row, Col} from 'reactstrap';
 import Reply from '@material-ui/icons/Reply';
 import TextField from '@material-ui/core/TextField';
 import Hotel from '@material-ui/icons/Hotel';
@@ -24,9 +24,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import TopNavBar from './TopNavBar'
 import {Cookies} from 'react-cookie';
-import BottomNavBar from './BottomNavBar'
 import { Grid } from '@material-ui/core';
-
+import DoDont from "./DoDont"
 
 
 const ComplaintPage = () => {
@@ -68,8 +67,8 @@ const ComplaintPage = () => {
         })
     }
 
-    function adminPage(){
-        history.push("/admin");
+    function HomePage(){
+        history.push("/Homepage");
     }
    
    function complaintshow(){
@@ -80,17 +79,17 @@ const ComplaintPage = () => {
         <div>
             <TopNavBar /><br /><br /><br />           
           
-            <button onClick = {adminPage} id="button-design1">Dashboard</button>
-            <button onClick = {complaintshow} id="button-design1">Complaint</button>       
-            <br></br>
-
-             <Row >
+            <Row >
                     <Col xs="12" md="12">
                     <h5 className="quoteBox"><i>
                         PROBLEM...? 
                      </i> Write a grievence  </h5>
                     </Col>
-                </Row>          
+                </Row> 
+            <button onClick = {HomePage} id="button-design1">Dashboard</button>
+            <button onClick = {complaintshow} id="button-design1">Complaint</button>       
+            <br></br>
+         
 
             <div className="modal-wrapper" style={{display: showStore ? 'block' : 'none' }}>
                         <div className="modal-header">
@@ -115,7 +114,7 @@ const ComplaintPage = () => {
                         id="standard-multiline-flexible"
                         label="Complaint"
                         multiline
-                        rowsMax={6}
+                        rowsMax={12}
                         onChange={e => setComplaint({...complaint,comp:e.target.value})}
                         />
 
@@ -124,7 +123,7 @@ const ComplaintPage = () => {
                         id="standard-multiline-flexible"
                         label="Suggetion"
                         multiline
-                        rowsMax={6}
+                        rowsMax={12}
                         onChange={e => setComplaint({...complaint,suggetion:e.target.value})}
                         />
 
@@ -138,9 +137,128 @@ const ComplaintPage = () => {
     </div>
            
 
-      
-              
-                <BottomNavBar />
+      <Grid container spacing={2}>
+          <Grid item xs={12} md={4}>
+                            <div class="frame">
+                                <div class="card">
+                                    <div class="flip hvr-outline-in">
+                                        
+                                        <div class="front">
+                                            <h4>Hostlers</h4>
+                                            <button className="reply"><Hotel/></button>
+                                            {/* <button className="reply"><Food/></button>
+                                            <button className="reply"><Room/></button> */}
+                                        </div>
+                                        
+                                        <div class="back">
+                                             {/* <text><strong>Your complaints {HostelComplaint}</strong></text><br /> */}
+                                             <text id="rotateContainer"><strong> {compCount.HostelComplaint} Complaints Yours</strong></text><br />
+                                             <button className="reply"><Reply/></button>
+                                             
+                                        </div>
+
+                                    </div>
+                                
+                                </div>
+                            </div>
+               
+          </Grid>
+          <Grid item xs={12} md={4}>
+          <div class="frame">
+                                <div class="card">
+                                    <div class="flip hvr-outline-in">
+                                        
+                                        <div class="front">
+                                            <h4>Academics</h4>
+                                            <button className="reply"><Books/></button>
+                                            {/* <button className="reply"><Faculty/></button>
+                                            <button className="reply"><ClassRoom/></button> */}
+                                        </div>
+                                        
+                                        <div class="back">
+                                             {/* <text><strong>Your complaints {AcademicComplaint}</strong></text><br /> */}
+                                             <text id="rotateContainer"><strong> {compCount.AcademicComplaint} Complaints Yours</strong></text><br />
+                                             <button className="reply"><Reply/></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><br />
+          </Grid>
+          <Grid item xs={12} md={4}>
+          <div class="frame">
+                               <div class="card">
+                                   <div class="flip hvr-outline-in">
+                                       
+                                       <div class="front">
+                                           <h4>Ragging</h4>
+                                           <button className="reply"><Avoid/></button>
+                                            {/* <button className="reply"><Teasing/></button>
+                                            <button className="reply"><Missbehave/></button> */}
+                                       </div>
+                                       
+                                       <div class="back">
+                                            {/* <text><strong>Your complaints {RaggingComplaint}</strong></text><br /> */}
+                                            <text id="rotateContainer"><strong> {compCount.RaggingComplaint} Complaints Yours</strong></text><br />
+                                            <button className="reply"><Reply/></button>
+                                       </div>
+
+                                   </div>
+                               
+                               </div>
+
+                           
+                           </div><br />
+          </Grid>
+
+      </Grid>
+
+      <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+          <div class="frame">
+                               <div class="card">
+                                   <div class="flip hvr-outline-in">
+                                       
+                                       <div class="front">
+                                           <h4>Transport</h4>
+                                           <button className="reply"><Bus/></button>
+                                            {/* <button className="reply"><Comfort/></button>
+                                            <button className="reply"><Report/></button> */}
+                                       </div>
+                                       
+                                       <div class="back">
+                                            {/* <text><strong>Your complaints {TransportComplaint}</strong></text><br /> */}
+                                            <text id="rotateContainer"><strong> {compCount.TransportComplaint} Complaints Yours</strong></text><br />
+                                            <button className="reply"><Reply/></button>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div><br />
+          </Grid>
+          <Grid item xs={12} md={6}>
+               <div class="frame">
+                               <div class="card">
+                                   <div class="flip hvr-outline-in">
+                                       
+                                       <div class="front">
+                                           <h4>Others</h4>
+                                           <button className="reply"><Other /></button>
+                                       </div>
+                                       
+                                       <div class="back">
+                                            {/* <text><strong>Your complaints {UnknownComplaint}</strong></text><br /> */}
+                                            <text id="rotateContainer"><strong> {compCount.UnknownComplaint} Complaints Yours</strong></text><br />
+                                            <button className="reply"><Reply/></button>
+                                       </div>
+                                   </div>                        
+                               </div>
+                           </div><br />
+          </Grid>
+
+      </Grid>
+
+                <DoDont />
+
+                {/* <BottomNavBar /> */}
                 
 
      
