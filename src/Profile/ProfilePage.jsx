@@ -1,4 +1,3 @@
-import { Card } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ProgressBar from 'react-bootstrap/ProgressBar'
