@@ -99,7 +99,7 @@ function LoginPage(){
                             <input minLength="5" type="password" autoComplete="new-password" placeholder="password"  onChange= {e =>setDetails({...details,password:e.target.value})} value={details.password} required /> <br /><br /><br />
 
                             <button className="buttonStyle"  type="submit" value="login" >Login</button><br /><br />
-                            <button className="buttonStyle" value="Google" onClick={googleAuth}>G+</button><br /><br />
+                            {/* <button className="buttonStyle" value="Google" onClick={googleAuth}>G+</button><br /><br /> */}
 
                         </Form>
                 </div>
