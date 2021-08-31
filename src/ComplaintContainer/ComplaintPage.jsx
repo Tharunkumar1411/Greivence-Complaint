@@ -140,7 +140,7 @@ const ComplaintPage = () => {
       <Grid container spacing={2}>
           <Grid item xs={12} md={4}>
                             <div class="frame">
-                                <div class="card">
+                                <div class="cardreport">
                                     <div class="flip hvr-outline-in">
                                         
                                         <div class="front">
@@ -165,7 +165,7 @@ const ComplaintPage = () => {
           </Grid>
           <Grid item xs={12} md={4}>
           <div class="frame">
-                                <div class="card">
+                                <div class="cardreport">
                                     <div class="flip hvr-outline-in">
                                         
                                         <div class="front">
@@ -186,7 +186,7 @@ const ComplaintPage = () => {
           </Grid>
           <Grid item xs={12} md={4}>
           <div class="frame">
-                               <div class="card">
+                               <div class="cardreport">
                                    <div class="flip hvr-outline-in">
                                        
                                        <div class="front">
@@ -215,7 +215,7 @@ const ComplaintPage = () => {
       <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
           <div class="frame">
-                               <div class="card">
+                               <div class="cardreport">
                                    <div class="flip hvr-outline-in">
                                        
                                        <div class="front">
@@ -236,7 +236,7 @@ const ComplaintPage = () => {
           </Grid>
           <Grid item xs={12} md={6}>
                <div class="frame">
-                               <div class="card">
+                               <div class="cardreport">
                                    <div class="flip hvr-outline-in">
                                        
                                        <div class="front">
