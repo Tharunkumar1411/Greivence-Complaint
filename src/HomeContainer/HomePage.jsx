@@ -66,8 +66,8 @@ const HomePage = () => {
         var cook = cookie.get("token")
         axios.put("https://grievence-backend.herokuapp.com/deleteAccount",cook).then((res)  => {
             if(res) {
-                cookie.remove("jwtToken");
-                cookie.remove("mail");
+                sessionStorage.removeItem("jwtToken");
+                sessionStorage.removeItem("mail");
                 window.location.replace("/");
             }
             

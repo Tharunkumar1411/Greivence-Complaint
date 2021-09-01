@@ -1,18 +1,17 @@
 import React,{useState,useEffect} from 'react'
-import Card from 'react-bootstrap/Card'
 import '@material-ui/core'
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import {Cookies} from 'react-cookie';
 import { makeStyles } from '@material-ui/styles';
 import { ButtonBase, Grid, Hidden, TextField } from '@material-ui/core';
-import Paper from '@material-ui/core/Paper';
 import "./LoginPage.css"
 import { AccountCircle, EmailOutlined, LockOpen } from '@material-ui/icons';
-import { Button } from 'bootstrap';
-import { Fragment } from 'react';
+
 import LoginPicture from "../Assets/LoginPic.svg"
 import Wave from "../Assets/wavefour.svg"
+import cogoToast from 'cogo-toast';
+
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -23,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
       position:"fiexed",
       overflow:"hidden",
 
-    
     },
 
     header:{
@@ -41,9 +39,7 @@ function LoginPage(){
    
     const cookie = new Cookies();
     const [details,setDetails] = useState({name:"", password:"", email:"", rememberMe:false});
-    const [mailError,setMailError] = useState(true)
-
-    
+    const [mailError,setMailError] = useState(true);
 
     const history = useHistory();
 
@@ -51,10 +47,10 @@ function LoginPage(){
 
         var cookieCheck = cookie.get("jwtToken");
         if(cookieCheck){
-            axios.put("https://grievence-backend.herokuapp.com/jwt",{jwt:cookie.get("jwtToken")}).then((res) => {
+            axios.put("https://grievence-backend.herokuapp.com/jwt",{jwt:sessionStorage.getItem("jwtToken")}).then((res) => {
                 //https://grievence-backend.herokuapp.com   
              
-                cookie.set("mail",res.data);
+                sessionStorage.setItem("mail",res.data);
 
                 history.push("/complaint");
             })
@@ -87,21 +83,33 @@ function LoginPage(){
             console.log("done",details)
 
            
-            axios.put('https://grievence-backend.herokuapp.com/signIn',details).then(res => {
-
+            axios.put('http://grievence-backend.herokuapp.com/signIn',details).then(res => {
+//grievence-backend.herokuapp.com
             sessionStorage.setItem("mail",details.email)
-  
+            
             if(res.data == "ALLOWUSER"){
+
+                sessionStorage.setItem("jwtToken",res.data.token);
+
+                cogoToast.success("Login Sucessfull");
 
                 history.push("/complaint")
                       
             }else{
+                
+                sessionStorage.setItem("jwtToken",res.data.token);
 
-                history.push("/complaint");
+                cogoToast.success("Login Sucessfull");
+
+                history.push("/complaint")
+
 
             }
             })
         }else{
+
+            cogoToast.error("Enter valid Details");
+
             console.log("err",details)
         }
   
@@ -109,32 +117,9 @@ function LoginPage(){
 
 
     return(
-        // <div className="loginBody" >
-        //     <div className="loginHeader">
-        //         <h2 style={{color:"rgb(40, 128, 201)",fontSize:"60px",textAlign:"center",}}>G</h2>
-          
-     
-        //         <h3 style={{textAlign:"center",opacity:"2",color:"white",fontSize:"30px"}}>Grievence System</h3><br />
-        //     </div><br /><br />
-    
-        //         <div className="login1" style={{width:'16rem',textAlign:'center'}}>
-        //             <Form onSubmit={submitHandler}>
-        //                     <input minLength="12" type="email" pattern={"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"} placeholder="Email" onChange= {(e) =>{setDetails({...details,email:e.target.value})}} value={details.email}  required /><br /><br />
-                        
-        //                     <input minLength="3" type="text" autoComplete="new-password" placeholder="Username" onChange= {e =>setDetails({...details,name:e.target.value})} value={details.name} required /><br /><br />
+ 
 
-        //                     <input minLength="5" type="password" autoComplete="new-password" placeholder="password"  onChange= {e =>setDetails({...details,password:e.target.value})} value={details.password} required /> <br /><br /><br />
-
-        //                     <button className="buttonStyle"  type="submit" value="login" >Login</button><br /><br />
-        //                     {/* <button className="buttonStyle" value="Google" onClick={googleAuth}>G+</button><br /><br /> */}
-
-        //                 </Form>
-        //         </div>
-               
-          
-        // </div>
-
-        <div style={{backgroundImage:`url(${Wave})`,inset:"0",backgroundPosition: 'center',
+    <div style={{backgroundImage:`url(${Wave})`,inset:"0",backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat'
       }}>
@@ -198,9 +183,9 @@ function LoginPage(){
                         </Grid>
 
 
-                    </div>
+            </div>
 
-        </div>
+    </div>
        
 
 

@@ -7,8 +7,7 @@ import HomePage from "./HomeContainer/HomePage"
 import ProfilePage from "./Profile/ProfilePage"
 
 function App(){
-
- 
+    
     return (
         <div>
             <BrowserRouter>
