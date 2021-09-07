@@ -76,6 +76,7 @@ function LoginPage(){
         // var namePattern = new RegExp(/[aA-zZ]{7,29}"/);
 
         var checkPattern = pattern.test(details.email);
+
         setMailError(checkPattern)
 
         if(details.name.length >=3 && checkPattern){
@@ -108,9 +109,10 @@ function LoginPage(){
             })
         }else{
 
-            cogoToast.error("Enter valid Details");
 
-            console.log("err",details)
+            (!checkPattern)? cogoToast.error("Enter Valid Mail Id"): cogoToast.error("Enter Valid Username")
+
+       
         }
   
     }

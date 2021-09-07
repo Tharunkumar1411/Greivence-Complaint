@@ -10,10 +10,10 @@
 
 #dropdown-basic {
     background-color: none;
-    border-radius: 25px;
     background: none;
+    padding:0.3rem;
+    border-radius: 0.5rem;
     color: rgb(29, 21, 21);
-    padding: 10px;
     cursor: pointer;
     outline: none;
     margin: 15px
