@@ -38,6 +38,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
 import Draggable from 'react-draggable';
 
+import homeBackground from "../Assets/homeBackground.jpg";
+import Wave from "../Assets/wavefour.svg"
 
 function PaperComponent(props) {
     return (
@@ -140,13 +142,13 @@ const HomePage = () => {
         })
     }
 
+    document.body.style.backgroundImage = `url(${homeBackground})`;
+
     
     return(
 
         <div>
             <TopNavBar /><br /><br /><br />
-
-
 
             <button id="dropdown-basic" onClick={handleClickOpen}>
                 Complaint
@@ -161,79 +163,83 @@ const HomePage = () => {
                 Profile
             </button>
 
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        PaperComponent={PaperComponent}
-        aria-labelledby="draggable-dialog-title"
-        fullWidth="true"
-      >
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-          Grievence Complaint
-        </DialogTitle>
-        <DialogContent>
+        <Dialog
+            open={open}
+            onClose={handleClose}
+            PaperComponent={PaperComponent}
+            aria-labelledby="draggable-dialog-title"
+            fullWidth="true"
+        >
+            <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+            Grievence Complaint
+            </DialogTitle>
 
-          <form>
-          <RadioGroup aria-label="gender" name="gender1" row>
-                        <FormControlLabel   control={<Radio />} label="Hostel" value="Hostel"  onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>
-                        <FormControlLabel  control={<Radio />} label="Ragging" value="Ragging" onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>
-                        <FormControlLabel control={<Radio />} label="Academics" value="Academics"  onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>
-                        <FormControlLabel control={<Radio />} label="Other" value="Others"  onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>
-                        <FormControlLabel   control={<Radio />} label="Transport" value="Transport"  onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>
-                    </RadioGroup>       
+            <DialogContent>
+
+            <form>
+                <RadioGroup aria-label="gender" name="gender1" row>
+                            <FormControlLabel   control={<Radio />} label="Hostel" value="Hostel"  onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>
+                            <FormControlLabel  control={<Radio />} label="Ragging" value="Ragging" onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>
+                            <FormControlLabel control={<Radio />} label="Academics" value="Academics"  onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>
+                            <FormControlLabel control={<Radio />} label="Other" value="Others"  onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>
+                            <FormControlLabel   control={<Radio />} label="Transport" value="Transport"  onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>
+                        </RadioGroup>       
+
+                    
+                            <TextField
+                                    id="filled-multiline-static"
+                                    label="Complaint"
+                                    multiline
+                                    rows={4}
+                                    variant="filled"
+                                    onChange={e => setComplaint({...complaint,comp:e.target.value})}
+                                    style={{padding:"0.5rem"}}
+                                    />
 
                 
-                        <TextField
-                                id="filled-multiline-static"
-                                label="Complaint"
-                                multiline
-                                rows={4}
-                                variant="filled"
-                                onChange={e => setComplaint({...complaint,comp:e.target.value})}
-                                style={{padding:"0.5rem"}}
-                                />
+                                <TextField
+                                    id="filled-multiline-static"
+                                    label="Suggetion"
+                                    multiline
+                                    rows={4}
+                                    variant="filled"
+                                    onChange={e => setComplaint({...complaint,suggetion:e.target.value})}
+                                    style={{padding:"0.5rem"}}
 
-               
-                            <TextField
-                                id="filled-multiline-static"
-                                label="Suggetion"
-                                multiline
-                                rows={4}
-                                variant="filled"
-                                onChange={e => setComplaint({...complaint,suggetion:e.target.value})}
-                                style={{padding:"0.5rem"}}
+                    />
+                </form>
+            </DialogContent>
+                            <DialogActions>
 
-                            />
-                       
+                                <Button autoFocus onClick={handleClose} color="primary">
+                                    Cancel
+                                </Button>
 
-          </form>
-        </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={submitHandler} color="primary">
-            Post
-          </Button>
-        </DialogActions>
-      </Dialog>
-        
-                {state}<br /><br /><br />
+                                <Button onClick={submitHandler} color="primary">
+                                    Post
+                                </Button>
+                            </DialogActions>
+        </Dialog>
+
+            
+
+                {state}<br /><br />
            
-                <BottomNavigation id="BottomNavigation"
+                <BottomNavigation id="bottomNav"
+                style={{backgroundColor:"transparent",opacity:"7"
+                }}
                 value={value}
                 onChange={(event, newValue) => {
                     setValue(newValue);
                     show(newValue)
-                    console.log(newValue)
                 }}
                 showLabels
                 >
-                <BottomNavigationAction  id="label" label="Hostel" value="hostel" icon={<Badge  badgeContent={0} color="primary"><Hostell /></Badge>}/>
-                <BottomNavigationAction  id="label" label="Transport" value="trans" icon={<Badge  badgeContent={0} color="primary"><Transport /></Badge>} />
-                <BottomNavigationAction  id="label" label="Academic" value="academic" icon={<Badge  badgeContent={0} color="primary"><Academic /></Badge>} />
-                <BottomNavigationAction  id="label" label="Ragging" value="ragging" icon={<Badge  badgeContent={0} color="primary"><Ragging /></Badge>} />
-                <BottomNavigationAction  id="label" label="Other" value="other" icon={<Badge badgeContent={0} color="primary"> <Other /></Badge>} />
+                    <BottomNavigationAction  id="label" label="Hostel" value="hostel" icon={<Badge  badgeContent={0} color="primary"><Hostell /></Badge>}/>
+                    <BottomNavigationAction  id="label" label="Transport" value="trans" icon={<Badge  badgeContent={0} color="primary"><Transport /></Badge>} />
+                    <BottomNavigationAction  id="label" label="Academic" value="academic" icon={<Badge  badgeContent={0} color="primary"><Academic /></Badge>} />
+                    <BottomNavigationAction  id="label" label="Ragging" value="ragging" icon={<Badge  badgeContent={0} color="primary"><Ragging /></Badge>} />
+                    <BottomNavigationAction  id="label" label="Other" value="other" icon={<Badge badgeContent={0} color="primary"> <Other /></Badge>} />
                 </BottomNavigation>
             
         </div>

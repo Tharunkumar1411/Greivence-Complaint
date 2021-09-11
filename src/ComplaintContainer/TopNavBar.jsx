@@ -10,6 +10,12 @@ import axios from 'axios'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import Fingerprint from '@material-ui/icons/Fingerprint';
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -30,21 +36,47 @@ export default function TopNavBar() {
   const cookie = new Cookies();
 
   const history = useHistory(); 
-  const showProfile = () => {
-    history.push('/profile')
-  }
-  const BackToSignin = () => {
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+  function Logout() {
+      
     var cook = cookie.get("token")
     axios.put("https://grievence-backend.herokuapp.com/deleteAccount",cook).then((res)  => {
         if(res) {
-            cookie.remove("jwtToken");
-            cookie.remove("mail");
-            history.push("/");
+            sessionStorage.removeItem("jwtToken");
+            sessionStorage.removeItem("mail");
+            window.location.replace("/");
+            setOpen(false);
+
         }
+        
+
+    })
+}
+
+  // const BackToSignin = () => {
+
+  //   var cook = cookie.get("token")
+  //   axios.put("https://grievence-backend.herokuapp.com/deleteAccount",cook).then((res)  => {
+  //       if(res) {
+  //           cookie.remove("jwtToken");
+  //           cookie.remove("mail");
+  //           history.push("/");
+  //       }
  
-  })
-  }
+  // })
+  // }
+  
   const classes = useStyles();
 
   return (
@@ -54,11 +86,32 @@ export default function TopNavBar() {
           <Typography variant="h6" className={classes.title}>
             Grievence of VCET
           </Typography>
-          {/* <BottomNavigationAction  id="label" label="SignUp" icon={<Fingerprint />} onClick={BackToSignin}/> */}
 
-          <Button color="inherit" onClick={showProfile}>Profile </Button>
+          <Button color="inherit" onClick={handleClickOpen}>LogOut </Button>
         </Toolbar>
       </AppBar>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Grievence Logout?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Sure you want to logout from Grievence?!!
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={Logout} color="primary" autoFocus>
+            Logout
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
