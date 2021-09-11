@@ -46,6 +46,7 @@ function LoginPage(){
     useEffect(() => {
 
         var cookieCheck = sessionStorage.getItem("jwtToken");
+        
         if(cookieCheck){
             axios.put("https://grievence-backend.herokuapp.com/jwt",{jwt:sessionStorage.getItem("jwtToken")}).then((res) => {
                 //https://grievence-backend.herokuapp.com   
@@ -168,7 +169,7 @@ function LoginPage(){
                                     
                                         <input type="checkbox" onChange={(e) => setDetails({...details, rememberMe:!details.rememberMe})}/><label>Remember me</label><br />
 
-                                        <ButtonBase   type="submit" style={{color:"white", backgroundColor:"rgb(104, 125, 212)", width:"12rem",
+                                        <ButtonBase   type="submit" style={{color:"white", backgroundColor:"rgb(112, 105, 212)", width:"12rem",
                                          padding:"0.5rem", borderRadius:"1.5rem", display:"flex", marginRight:"auto", marginLeft:"auto"
                                          }}>
                                              Log In

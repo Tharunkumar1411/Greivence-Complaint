@@ -68,7 +68,11 @@ const HomePage = () => {
     useEffect (() => {
      
 
-        var mail = cookie.get("mail");
+        var mail = sessionStorage.getItem("mail");
+
+        if(!mail){
+            window.location.replace("/");
+        }
       
             axios.post("https://grievence-backend.herokuapp.com/getComplaintCount",{Email:mail}).then(res => {
                 //https://grievence-backend.herokuapp.com
