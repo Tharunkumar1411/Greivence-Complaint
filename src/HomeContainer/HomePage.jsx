@@ -40,6 +40,7 @@ import Draggable from 'react-draggable';
 
 import homeBackground from "../Assets/homeBackground.jpg";
 import Wave from "../Assets/wavefour.svg"
+import cogoToast from 'cogo-toast';
 
 function PaperComponent(props) {
     return (
@@ -130,14 +131,17 @@ const HomePage = () => {
 
     function Logout() {
       
-        var cook = cookie.get("token")
+        var cook = sessionStorage.getItem("jwtToken");
+
         axios.put("https://grievence-backend.herokuapp.com/deleteAccount",cook).then((res)  => {
+
             if(res) {
                 sessionStorage.removeItem("jwtToken");
                 sessionStorage.removeItem("mail");
                 window.location.replace("/");
+            }else{
+                cogoToast.error("somethin went wrong!!");
             }
-            
 
         })
     }
@@ -154,12 +158,12 @@ const HomePage = () => {
                 Complaint
             </button>
 
-            <button id="dropdown-basic" onClick={handleClickOpen}>
+            <button id="dropdown-basic" onClick={() => history.push("/about")}>
                 About
             </button>
 
             
-            <button id="dropdown-basic" onClick={handleClickOpen}>
+            <button id="dropdown-basic" onClick={() => history.push("/profile")}>
                 Profile
             </button>
 

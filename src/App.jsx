@@ -12,10 +12,10 @@ function App(){
             <BrowserRouter>
         
                 <Switch>
-                    <Route path="/" exact component={HomePage} />
-                    {/* {(sessionStorage.getItem("mail")) && <Route path="/complaint" component={ComplaintPage} />} */}
-                    {/* {(sessionStorage.getItem("mail")) &&<Route path="/Homepage" component={HomePage} />} */}
-                    {/* {(sessionStorage.getItem("mail")) &&<Route path="/profile" component={ProfilePage} /> } */}
+                    <Route path="/" exact component={LoginPage} />
+                    <Route path="/home" component={HomePage} />
+                    {/* <Route path="/about" component={AboutPage} /> */}
+                    <Route path="/profile" component={ProfilePage} /> 
                 </Switch>
             </BrowserRouter>
            

@@ -45,14 +45,14 @@ function LoginPage(){
 
     useEffect(() => {
 
-        var cookieCheck = cookie.get("jwtToken");
+        var cookieCheck = sessionStorage.getItem("jwtToken");
         if(cookieCheck){
             axios.put("https://grievence-backend.herokuapp.com/jwt",{jwt:sessionStorage.getItem("jwtToken")}).then((res) => {
                 //https://grievence-backend.herokuapp.com   
              
                 sessionStorage.setItem("mail",res.data);
 
-                history.push("/complaint");
+                history.push("/home");
             })
                
         }
@@ -60,12 +60,6 @@ function LoginPage(){
         },[cookie,history]);
  
 
-    
-    const googleAuth = () => {
-        axios.get("https://grievence-backend.herokuapp.com/google").then((res)=>{
-            console.log(res);
-        })
-    }
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -94,7 +88,7 @@ function LoginPage(){
 
                 cogoToast.success("Login Sucessfull");
 
-                history.push("/complaint")
+                history.push("/home")
                       
             }else{
                 
@@ -102,7 +96,7 @@ function LoginPage(){
 
                 cogoToast.success("Login Sucessfull");
 
-                history.push("/complaint")
+                history.push("/home")
 
 
             }
