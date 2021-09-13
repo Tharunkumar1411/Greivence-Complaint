@@ -76,9 +76,7 @@ function LoginPage(){
 
         if(details.name.length >=3 && checkPattern){
 
-            console.log("done",details)
-
-           
+          
             axios.put('http://grievence-backend.herokuapp.com/signIn',details).then(res => {
 //grievence-backend.herokuapp.com
             sessionStorage.setItem("mail",details.email)

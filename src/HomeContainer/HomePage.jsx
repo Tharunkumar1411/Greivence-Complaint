@@ -96,6 +96,7 @@ const HomePage = () => {
             }
         })
     }
+    
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -144,13 +145,13 @@ const HomePage = () => {
                 sessionStorage.removeItem("mail");
                 window.location.replace("/");
             }else{
-                cogoToast.error("somethin went wrong!!");
+                // cogoToast.error("somethin went wrong!!");
             }
 
         })
     }
 
-    document.body.style.backgroundImage = `url(${homeBackground})`;
+    // document.body.style.backgroundImage = `url(${homeBackground})`;
 
     
     return(
@@ -234,7 +235,7 @@ const HomePage = () => {
                 {state}<br /><br />
            
                 <BottomNavigation id="bottomNav"
-                style={{backgroundColor:"transparent",opacity:"7"
+                style={{zIndex:"1"
                 }}
                 value={value}
                 onChange={(event, newValue) => {

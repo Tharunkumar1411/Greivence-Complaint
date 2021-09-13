@@ -1,21 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import ProgressBar from 'react-bootstrap/ProgressBar'
 import {Cookies} from 'react-cookie';
 import TopNavBar from '../ComplaintContainer/TopNavBar';
 import Axios from 'axios';
-import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
-import Grid from '@material-ui/core/Grid';
+import Avatar from '@material-ui/core/Avatar';
+import WaveBackground from "../Assets/profile.svg";
+import PersonImage from "../Assets/Person.jpg";
+import { Card, CardContent } from '@material-ui/core';
+import { CardBody } from 'reactstrap';
 
-import EqualizerIcon from '@material-ui/icons/Equalizer';
+
+import Paper from '@material-ui/core/Paper';
+import {
+  Chart,
+  BarSeries,
+  Title,
+  ArgumentAxis,
+  ValueAxis,
+} from '@devexpress/dx-react-chart-material-ui';
+import { Animation } from '@devexpress/dx-react-chart';
+
 const useStyles = makeStyles((theme) => ({
     rootCard:{
         marginLeft:"30px",
         border:"none",
         background:"none"
-      
+
     },
-    card:{
+        card:{
         width:'max-content',
         padding:'20px',
         marginBottom:'10px',
@@ -29,9 +41,7 @@ const useStyles = makeStyles((theme) => ({
     card2:{
         position:'right',
         padding:'10px',
-        margin:'10px',
-
-      
+        margin:'10px',  
     },
     bar:{
         marginBottom:'5px',  
@@ -47,7 +57,39 @@ const useStyles = makeStyles((theme) => ({
     },
     textinCard:{
         margin:"10px"
+    },
+
+    Avatar:{
+        width:theme.spacing(7),
+        height:theme.spacing(7),
+        display:"flex", marginLeft:"auto", marginRight:"auto"
+
+    },
+
+    Forflex:{
+        display:"flex",
+        flexDirection:"column",
+        gap:"4rem",
+        justifyContent:"center",
+        alignItems:"center",
+        paddingTop:"2rem",
+        [theme.breakpoints.up("sm")]: {
+            flexDirection:"row",
+            
+        },
+    },
+
+    forChart:{
+        backgroundImage:`url(${WaveBackground})`,
+        backgroundPosition:"center",
+        backgroundRepeat:"no-repeat",
+        backgroundSize:"cover",
+        height:"60hv",
+        width:"80%",
+        paddingTop:"5rem"
     }
+
+  
 }))
 
 
@@ -56,10 +98,12 @@ const ProfilePage = (props) => {
     const [barData,setBarData] = useState({hostel:0,academic:0,transport:0,ragging:0,others:0})
 
     const classes = useStyles();
-    const cookie = new Cookies();
+
+    
+
 
     useEffect(() => {
-        Axios.post("https://grievence-backend.herokuapp.com/getComplaintCount",{Email:cookie.get("mail")}).then((res) => {
+        Axios.post("https://grievence-backend.herokuapp.com/getComplaintCount",{Email:sessionStorage.getItem("mail")}).then((res) => {
          setBarData({...barData,hostel:res.data[0],academic:res.data[1],ragging:res.data[2],transport:res.data[3],others:res.data[4]})
         })
    
@@ -67,80 +111,130 @@ const ProfilePage = (props) => {
 
     const totalComplaintsCount = (barData.hostel + barData.academic + barData.transport + barData.ragging + barData.others);
  
+    const chartData = [
+        { field: 'Hostel', percentage: barData.hostel },
+        { field: 'Academic', percentage: barData.academic },
+        { field: 'Transport', percentage: barData.transport },
+        { field: 'Ragging', percentage: barData.ragging },
+        { field: 'Others', percentage: barData.others },
+    
+      ];
+
 
     useEffect(() => {
         
-        Axios.put("https://grievence-backend.herokuapp.com/getUserdetails",{Email:cookie.get("mail")}).then((res) => {
+        Axios.put("https://grievence-backend.herokuapp.com/getUserdetails",{Email:sessionStorage.getItem("mail")}).then((res) => {
 //https://grievence-backend.herokuapp.com
             setProfilePage({...ProfilePage,username:res.data.name,email:res.data.email,logedIn:res.data.logedIn})
-        
         })
 
         
                                                                                      
     })
 
+
     return ( 
         <div>
-            <TopNavBar /><br /><br /><br /><br /><br />
 
-        <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-            <div className={classes.rootCard}>
-
-                <EmojiPeopleIcon />
-
-                <text style={{color:"purple"}} >Be The Best Version Of You.</text><hr />
-
-                <div className={classes.textinCard}>
-                    <h5>Hi {ProfilePage.username} </h5>
-                    <h5>{ProfilePage.email}</h5>
-                    <h5>First loged In : {ProfilePage.logedIn}</h5>
-                </div>
+            <div>
+                <TopNavBar />
             </div>
 
-             </Grid>
+            <div style={{paddingTop:"5rem",}}>
 
-             <Grid item xs={12} md={6}>
-             <div className={classes.innercard}>
-                  
-                    <EqualizerIcon />
-                  <text style={{color:"purple"}} >Little By Little Becomes A Lot</text><hr />
-                  
-                  <h5>Total Complaintes:{totalComplaintsCount}</h5>
-                  {/* <h5>Responded Com:</h5> */}
-              
-            
-            
-             </div>  
-            </Grid>
-         </Grid>
+                <Avatar alt="Profile Pic" src="PersonImage" className={classes.Avatar}/>
 
-                <div className={classes.card2}>
+                <h2 style={{textAlign:"center"}}>{ProfilePage.username}</h2>
+                <h6 style={{textAlign:"center"}}>{ProfilePage.email}</h6>
+
+                <div className={classes.Forflex}>
+                    <Fragment>
+                        <Card style={{width:"fit-content",textAlign:"center"}}>
+                            <CardBody>
+                                {barData.hostel}
+                            </CardBody>
+
+                            <CardContent>
+                                Hostel 
+                            </CardContent>
+                        </Card>
+                    </Fragment>
+
+                    <Fragment>
+                        <Card style={{width:"fit-content",textAlign:"center"}}>
+                            <CardBody>
+                                {barData.academic}
+
+                            </CardBody>
+
+                            <CardContent>
+                                Academic 
+                            </CardContent>
+                        </Card>
+                    </Fragment>
+
+                    <Fragment>
+                        <Card style={{width:"fit-content",textAlign:"center"}}>
+                            <CardBody>
+                                {barData.transport}
+
+                            </CardBody>
+
+                            <CardContent>
+                                Transport
+                            </CardContent>
+                        </Card>
+                    </Fragment>
+
+                    <Fragment>
+                        <Card style={{width:"fit-content",textAlign:"center"}}>
+                            <CardBody>
+                                {barData.ragging}
+
+                            </CardBody>
+
+                            <CardContent>
+                                Ragging
+                            </CardContent>
+                        </Card>
+                    </Fragment>
+
+                    <Fragment>
+                        <Card style={{width:"fit-content",textAlign:"center"}}>
+                            <CardBody>
+                                {barData.others}
+
+                            </CardBody>
+
+                            <CardContent>
+                                Others
+                            </CardContent>
+                        </Card>
+                    </Fragment>
+
                    
+                </div>
 
-                   <h3>Your Progress in Grievence</h3>
-                   <text>Unless We Progress, We Regress.</text><hr />
 
-                   <div>
-                       <label>Hostel</label>
-                       <ProgressBar now={barData.hostel}  className={classes.bar}/>
-                       <label>Transport</label>
+                <div classname={classes.forChart} >
+                    <Paper>
+                        <Chart
+                            data={chartData}
+                        >
+                        <ArgumentAxis />
+                        <ValueAxis max={5} />
 
-                       <ProgressBar now={barData.transport} className={classes.bar}/>
-                       <label>Ragging</label>
+                        <BarSeries
+                            valueField="percentage"
+                            argumentField="field"
+                        />
+                        <Title text="Complaint Percentage" />
+                        <Animation />
+                        </Chart>
+                    </Paper>
 
-                       <ProgressBar now={barData.ragging}  className={classes.bar}/>
-                       <label>Academic</label>
-
-                       <ProgressBar now={barData.academic} className={classes.bar}/>
-                       <label>Others</label>
-
-                       <ProgressBar now={barData.others} className={classes.bar}/>
-                   </div>
-               </div>
-        
-          
+                </div>
+            </div>
 
       </div>
     )
