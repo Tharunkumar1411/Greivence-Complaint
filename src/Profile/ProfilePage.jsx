@@ -21,6 +21,7 @@ import {
 import { Animation } from '@devexpress/dx-react-chart';
 
 const useStyles = makeStyles((theme) => ({
+ 
     rootCard:{
         marginLeft:"30px",
         border:"none",
@@ -80,13 +81,9 @@ const useStyles = makeStyles((theme) => ({
     },
 
     forChart:{
-        backgroundImage:`url(${WaveBackground})`,
-        backgroundPosition:"center",
-        backgroundRepeat:"no-repeat",
-        backgroundSize:"cover",
+        paddingTop:"2rem",
         height:"60hv",
         width:"80%",
-        paddingTop:"5rem"
     }
 
   
@@ -104,7 +101,8 @@ const ProfilePage = (props) => {
 
     useEffect(() => {
         Axios.post("https://grievence-backend.herokuapp.com/getComplaintCount",{Email:sessionStorage.getItem("mail")}).then((res) => {
-         setBarData({...barData,hostel:res.data[0],academic:res.data[1],ragging:res.data[2],transport:res.data[3],others:res.data[4]})
+        //  console.log(res)
+        setBarData({...barData,hostel:res.data[0],academic:res.data[1],ragging:res.data[2],transport:res.data[3],others:res.data[4]})
         })
    
     },[barData])
@@ -127,14 +125,12 @@ const ProfilePage = (props) => {
 //https://grievence-backend.herokuapp.com
             setProfilePage({...ProfilePage,username:res.data.name,email:res.data.email,logedIn:res.data.logedIn})
         })
-
-        
-                                                                                     
+                                                                                    
     })
 
 
     return ( 
-        <div>
+        <div classname={classes.root}>
 
             <div>
                 <TopNavBar />
@@ -227,6 +223,7 @@ const ProfilePage = (props) => {
                         <BarSeries
                             valueField="percentage"
                             argumentField="field"
+                            barWidth="0.5"
                         />
                         <Title text="Complaint Percentage" />
                         <Animation />

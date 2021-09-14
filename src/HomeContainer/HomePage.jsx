@@ -55,7 +55,7 @@ const HomePage = () => {
     const cookie = new Cookies();
     const [value,setValue] = useState()
     const history = useHistory(); 
-    const [complaint,setComplaint] = useState({radio:"Others",comp:"Empty Complaint",suggetion:"Empty Suggetion",email:cookie.get("mail"),date:new Date().toLocaleDateString()});
+    const [complaint,setComplaint] = useState({radio:"Others",comp:"Empty Complaint",suggetion:"Empty Suggetion",email:sessionStorage.getItem("mail"),date:new Date().toLocaleDateString()});
 
     const [state,setState] = useState(<HostelContainer />)
 
