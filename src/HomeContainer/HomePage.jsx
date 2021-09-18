@@ -233,7 +233,7 @@ const HomePage = () => {
             
 
                 {state}<br /><br />
-           
+
                 <BottomNavigation id="bottomNav"
                 style={{zIndex:"1"
                 }}

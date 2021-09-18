@@ -76,8 +76,7 @@ function LoginPage(){
 
         if(details.name.length >=3 && checkPattern){
 
-          
-            axios.put('http://grievence-backend.herokuapp.com/signIn',details).then(res => {
+            axios.put('https://grievence-backend.herokuapp.com/signIn',details).then(res => {
 //grievence-backend.herokuapp.com
             sessionStorage.setItem("mail",details.email)
             
@@ -88,7 +87,6 @@ function LoginPage(){
                 cogoToast.success("Login Sucessfull");
 
                 history.push("/home")
-                      
             }else{
                 
                 sessionStorage.setItem("jwtToken",res.data.token);
@@ -105,20 +103,18 @@ function LoginPage(){
 
             (!checkPattern)? cogoToast.error("Enter Valid Mail Id"): cogoToast.error("Enter Valid Username")
 
-       
         }
-  
+
     }
 
 
     return(
- 
 
     <div style={{backgroundImage:`url(${Wave})`,inset:"0",backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat'
       }}>
-         
+
 
             <div className={classes.root}>
                         
@@ -181,7 +177,6 @@ function LoginPage(){
             </div>
 
     </div>
-       
 
 
     );

@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Cookies} from 'react-cookie';
 import TopNavBar from '../ComplaintContainer/TopNavBar';
 import Axios from 'axios';
-import Avatar from '@material-ui/core/Avatar';
-import WaveBackground from "../Assets/profile.svg";
+import Avatar from 'react-avatar';
+import WaveBackground from "../Assets/waveBack.svg";
 import PersonImage from "../Assets/Person.jpg";
 import { Card, CardContent } from '@material-ui/core';
 import { CardBody } from 'reactstrap';
@@ -21,6 +21,8 @@ import {
 import { Animation } from '@devexpress/dx-react-chart';
 
 const useStyles = makeStyles((theme) => ({
+
+  
  
     rootCard:{
         marginLeft:"30px",
@@ -60,12 +62,11 @@ const useStyles = makeStyles((theme) => ({
         margin:"10px"
     },
 
-    Avatar:{
-        width:theme.spacing(7),
-        height:theme.spacing(7),
-        display:"flex", marginLeft:"auto", marginRight:"auto"
-
-    },
+    // chart:{
+    //     backgroundImage:`url(${WaveBackground})`,inset:"0",backgroundPosition: 'center',
+    //     backgroundSize: 'cover',
+    //     backgroundRepeat: 'no-repeat',
+    // },
 
     Forflex:{
         display:"flex",
@@ -74,19 +75,16 @@ const useStyles = makeStyles((theme) => ({
         justifyContent:"center",
         alignItems:"center",
         paddingTop:"2rem",
+        paddingBottom:"2rem",
         [theme.breakpoints.up("sm")]: {
             flexDirection:"row",
             
         },
     },
 
-    forChart:{
-        paddingTop:"2rem",
-        height:"60hv",
-        width:"80%",
-    }
 
-  
+
+
 }))
 
 
@@ -96,7 +94,7 @@ const ProfilePage = (props) => {
 
     const classes = useStyles();
 
-    
+
 
 
     useEffect(() => {
@@ -138,7 +136,7 @@ const ProfilePage = (props) => {
 
             <div style={{paddingTop:"5rem",}}>
 
-                <Avatar alt="Profile Pic" src="PersonImage" className={classes.Avatar}/>
+            <Avatar name = {`${ProfilePage.username}`} alt="Picture" color="rgb(219, 218, 215)" round style={{display:"flex",marginLeft:"auto", marginRight:"auto" }}/>
 
                 <h2 style={{textAlign:"center"}}>{ProfilePage.username}</h2>
                 <h6 style={{textAlign:"center"}}>{ProfilePage.email}</h6>
@@ -212,25 +210,25 @@ const ProfilePage = (props) => {
                 </div>
 
 
-                <div classname={classes.forChart} >
-                    <Paper>
-                        <Chart
-                            data={chartData}
+                    <div className={classes.chart}>
+                    <Chart
+                            data={chartData} 
                         >
-                        <ArgumentAxis />
-                        <ValueAxis max={5} />
-
-                        <BarSeries
-                            valueField="percentage"
-                            argumentField="field"
-                            barWidth="0.5"
-                        />
-                        <Title text="Complaint Percentage" />
-                        <Animation />
+                            <ArgumentAxis />
+                
+                            <BarSeries
+                                valueField="percentage"
+                                argumentField="field"
+                                color="rgb(65, 112, 186)"
+                                barWidth="0.5"
+                            />
+                            <Title text="Complaint Percentage" />
+                            <Animation />
                         </Chart>
-                    </Paper>
+                    </div>
+                       
 
-                </div>
+             
             </div>
 
       </div>
