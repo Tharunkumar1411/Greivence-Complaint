@@ -2,6 +2,7 @@
 import React from "react";
 import TopNavBar from "../ComplaintContainer/TopNavBar"
 import { makeStyles } from "@material-ui/core";
+import headerBackground from "../Assets/aboutBackground.jpg";
 
 const useStyles = makeStyles((theme) => ({
     para:{
@@ -12,6 +13,16 @@ const useStyles = makeStyles((theme) => ({
         overflow:"hidden",
         width:"100%", 
         fontFamily:"georgia"
+    },
+
+    header:{
+        backgroundImage:`url(${headerBackground})`,
+        backgroundSize:"cover",
+        backgroundPosition:"center",
+        width:"100%",
+        fontSize:"3rem",
+        color:"#f6f3f3"
+
     }
 }))
 
@@ -21,8 +32,14 @@ const About = () => {
         <div>
             <TopNavBar />
 
-            <div style={{paddingTop:"5rem"}}>
-                <h2 style={{textAlign:"center"}}>Grievence</h2>
+            <div style={{paddingTop:"3.8rem"}}>
+                <div className={classes.header} >
+                    <h1 style={{textAlign:"center"}}>Grievence</h1>
+
+                    <h1 style={{width:"50%",color:"rgb(158, 186, 186"}}>Let Our Opportunities OverShadow Our Grievences</h1>
+                </div>
+
+
 
                 <p className={classes.para} >
                     Is a formal complaint that is raised by an employee/student towards an employer within the workplace. There are many reasons as to why a grievance can be raised, and also many ways to go about dealing with such a scenario. Reasons for filing a grievance in the workplace can be as a result of, but not limited to, a breach of the terms and conditions of an employment contract, raises and promotions, or lack thereof, as well as harassment and employment discrimination.<br />

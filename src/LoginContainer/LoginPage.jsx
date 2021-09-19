@@ -5,7 +5,6 @@ import axios from 'axios';
 import {Cookies} from 'react-cookie';
 import { makeStyles } from '@material-ui/styles';
 import { ButtonBase, Grid, Hidden, TextField } from '@material-ui/core';
-import "./LoginPage.css"
 import { AccountCircle, EmailOutlined, LockOpen } from '@material-ui/icons';
 
 import LoginPicture from "../Assets/LoginPic.svg"

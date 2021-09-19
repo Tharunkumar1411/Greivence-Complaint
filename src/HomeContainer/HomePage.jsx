@@ -63,7 +63,7 @@ const HomePage = () => {
 
     const [showStore,setShowStore] = useState(false)
 
-    const [compCount,setCompCount] = useState({HostelComplaint:0,AcademicComplaint:0,TransportComplaint:0,RaggingComplaint:0,UnknownComplaint:0})
+    // const [compCount,setCompCount] = useState({HostelComplaint:0,AcademicComplaint:0,TransportComplaint:0,RaggingComplaint:0,UnknownComplaint:0})
       
     useEffect (() => {
      
@@ -74,10 +74,10 @@ const HomePage = () => {
             window.location.replace("/");
         }
       
-            axios.post("https://grievence-backend.herokuapp.com/getComplaintCount",{Email:mail}).then(res => {
-                //https://grievence-backend.herokuapp.com
-                setCompCount({...compCount,HostelComplaint:res.data[0],AcademicComplaint:res.data[1],RaggingComplaint:res.data[2],TransportComplaint:res.data[3],UnknownComplaint:res.data[4]})
-            })
+            // axios.post("https://grievence-backend.herokuapp.com/getComplaintCount",{Email:mail}).then(res => {
+            //     //https://grievence-backend.herokuapp.com
+            //     setCompCount({...compCount,HostelComplaint:res.data[0],AcademicComplaint:res.data[1],RaggingComplaint:res.data[2],TransportComplaint:res.data[3],UnknownComplaint:res.data[4]})
+            // })
     },[cookie]);
 
     function submitHandler(e){
