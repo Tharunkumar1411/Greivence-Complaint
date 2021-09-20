@@ -11,34 +11,58 @@ import LoginPicture from "../Assets/LoginPic.svg"
 import Wave from "../Assets/wavefour.svg"
 import cogoToast from 'cogo-toast';
 
+import Dialog from '@material-ui/core/Dialog';
+import Draggable from 'react-draggable';
+import Paper from '@material-ui/core/Paper';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
+import { Bars     } from 'react-loading-icons'
+
+function PaperComponent(props) {
+    return (
+      <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
+        <Paper {...props} />
+      </Draggable>
+    );
+  }
+
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
-      height: "100vh", /* Magic here */
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      position:"fiexed",
-      overflow:"hidden",
+        flexGrow: 1,
+        height: "100vh", /* Magic here */
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        position:"fiexed",
+        overflow:"hidden",
 
     },
 
     header:{
-  
         textAlign:"center", 
         color:"#245d70"
+    },
+
+    button:{
+        color:"white",
+        backgroundColor:"rgb(112, 105, 212)", 
+        width:"12rem",
+        padding:"0.5rem", 
+        borderRadius:"1.5rem", 
+        display:"flex", 
+        marginRight:"auto", 
+        marginLeft:"auto"
     }
 
-   
-  }));
+}));
 
 function LoginPage(){
 
     const classes = useStyles();
-   
     const cookie = new Cookies();
     const [details,setDetails] = useState({name:"", password:"", email:"", rememberMe:false});
     const [mailError,setMailError] = useState(true);
+    const [open, setOpen] = React.useState(false);
 
     const history = useHistory();
 
@@ -49,16 +73,12 @@ function LoginPage(){
         if(cookieCheck){
             axios.put("https://grievence-backend.herokuapp.com/jwt",{jwt:sessionStorage.getItem("jwtToken")}).then((res) => {
                 //https://grievence-backend.herokuapp.com   
-             
                 sessionStorage.setItem("mail",res.data);
 
                 history.push("/home");
             })
-               
         }
-      
         },[cookie,history]);
- 
 
 
     const submitHandler = (e) => {
@@ -66,7 +86,6 @@ function LoginPage(){
 
         var pattern = new RegExp(/^[A-Za-z0-9+_.-]{2,64}@(.+)$/i);
 
-    
         // var namePattern = new RegExp(/[aA-zZ]{7,29}"/);
 
         var checkPattern = pattern.test(details.email);
@@ -75,8 +94,11 @@ function LoginPage(){
 
         if(details.name.length >=3 && checkPattern){
 
+            handleClickOpen();
+
             axios.put('https://grievence-backend.herokuapp.com/signIn',details).then(res => {
-//grievence-backend.herokuapp.com
+            //grievence-backend.herokuapp.com
+
             sessionStorage.setItem("mail",details.email)
             
             if(res.data == "ALLOWUSER"){
@@ -92,7 +114,7 @@ function LoginPage(){
 
                 cogoToast.success("Login Sucessfull");
 
-                history.push("/home")
+                history.push("/home");                                                     
 
 
             }
@@ -106,13 +128,22 @@ function LoginPage(){
 
     }
 
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
 
     return(
 
     <div style={{backgroundImage:`url(${Wave})`,inset:"0",backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat'
-      }}>
+    }}>
 
 
             <div className={classes.root}>
@@ -162,9 +193,7 @@ function LoginPage(){
                                     
                                         <input type="checkbox" onChange={(e) => setDetails({...details, rememberMe:!details.rememberMe})}/><label>Remember me</label><br />
 
-                                        <ButtonBase   type="submit" style={{color:"white", backgroundColor:"rgb(112, 105, 212)", width:"12rem",
-                                         padding:"0.5rem", borderRadius:"1.5rem", display:"flex", marginRight:"auto", marginLeft:"auto"
-                                         }}>
+                                        <ButtonBase   type="submit" className={classes.button} >
                                              Log In
                                         </ButtonBase>
                                     </form>
@@ -174,6 +203,23 @@ function LoginPage(){
 
 
             </div>
+
+            <Dialog
+            open={open}
+            onClose={handleClose}
+            PaperComponent={PaperComponent}
+            aria-labelledby="draggable-dialog-title"
+            fullWidth="true"
+            style={{opacity:"0.8", }}
+        >
+            <DialogTitle style={{ cursor: 'move', textAlign:"center" }} id="draggable-dialog-title"> 
+
+                Loading   <Bars   stroke="#2b4e75" strokeOpacity={.500} />
+
+            </DialogTitle>
+
+
+        </Dialog>
 
     </div>
 

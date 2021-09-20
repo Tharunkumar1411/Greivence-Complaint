@@ -9,10 +9,10 @@ const useStyles = makeStyles((theme) => ({
         lineHeight:"2",
         padding:"1rem", 
         fontSize:"1.5rem",
-        textIndent:"5rem", 
+        textIndent:"2rem", 
         overflow:"hidden",
         width:"100%", 
-        fontFamily:"georgia"
+        fontFamily:"cursive"
     },
 
     header:{
@@ -34,9 +34,9 @@ const About = () => {
 
             <div style={{paddingTop:"3.8rem"}}>
                 <div className={classes.header} >
-                    <h1 style={{textAlign:"center"}}>Grievence</h1>
+                    <h1 style={{textAlign:"center"}}>ABOUT</h1>
 
-                    <h1 style={{width:"50%",color:"rgb(158, 186, 186"}}>Let Our Opportunities OverShadow Our Grievences</h1>
+                    <h1 style={{width:"50%",color:"rgb(158, 186, 186", fontSize:"1.5rem",paddingTop:"1rem"}}>Let Our Opportunities OverShadow Our Grievences</h1>
                 </div>
 
 
