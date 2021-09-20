@@ -12,31 +12,31 @@ import { CardBody } from 'reactstrap';
 
 import Paper from '@material-ui/core/Paper';
 import {
-  Chart,
-  BarSeries,
-  Title,
-  ArgumentAxis,
-  ValueAxis,
+    Chart,
+    BarSeries,
+    Title,
+    ArgumentAxis,
+    ValueAxis,
 } from '@devexpress/dx-react-chart-material-ui';
 import { Animation } from '@devexpress/dx-react-chart';
 
 const useStyles = makeStyles((theme) => ({
 
-  
- 
+
     rootCard:{
         marginLeft:"30px",
         border:"none",
         background:"none"
 
     },
-        card:{
-        width:'max-content',
-        padding:'20px',
-        marginBottom:'10px',
-        margin:'10px',
-        border:"none",
-        background:"none"
+
+    card:{
+        width:"fit-content",
+        textAlign:"center",
+        display:"flex",
+        flexDirection:"column",
+        padding:"1rem",
+        opacity:"0.5"
     },
     android:{
         width:'50px'
@@ -54,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
         width:'max-content',
         marginBottom:'10px',
         margin:'10px',
-        
         marginLeft:'auto',
         marginRight:'auto',
     },
@@ -62,11 +61,7 @@ const useStyles = makeStyles((theme) => ({
         margin:"10px"
     },
 
-    // chart:{
-    //     backgroundImage:`url(${WaveBackground})`,inset:"0",backgroundPosition: 'center',
-    //     backgroundSize: 'cover',
-    //     backgroundRepeat: 'no-repeat',
-    // },
+
 
     Forflex:{
         display:"flex",
@@ -143,70 +138,16 @@ const ProfilePage = (props) => {
 
                 <div className={classes.Forflex}>
                     <Fragment>
-                        <Card style={{width:"fit-content",textAlign:"center"}}>
-                            <CardBody>
-                                {barData.hostel}
-                            </CardBody>
+                        <Card className={classes.card} >
+                            <h6>Hostel {barData.hostel}</h6>
+                            <h6>Academic {barData.academic}</h6>
+                            <h6>Transport {barData.transport}</h6>
+                            <h6>Ragging {barData.ragging}</h6>
+                            <h6>Others {barData.others}</h6>
 
-                            <CardContent>
-                                Hostel 
-                            </CardContent>
                         </Card>
                     </Fragment>
 
-                    <Fragment>
-                        <Card style={{width:"fit-content",textAlign:"center"}}>
-                            <CardBody>
-                                {barData.academic}
-
-                            </CardBody>
-
-                            <CardContent>
-                                Academic 
-                            </CardContent>
-                        </Card>
-                    </Fragment>
-
-                    <Fragment>
-                        <Card style={{width:"fit-content",textAlign:"center"}}>
-                            <CardBody>
-                                {barData.transport}
-
-                            </CardBody>
-
-                            <CardContent>
-                                Transport
-                            </CardContent>
-                        </Card>
-                    </Fragment>
-
-                    <Fragment>
-                        <Card style={{width:"fit-content",textAlign:"center"}}>
-                            <CardBody>
-                                {barData.ragging}
-
-                            </CardBody>
-
-                            <CardContent>
-                                Ragging
-                            </CardContent>
-                        </Card>
-                    </Fragment>
-
-                    <Fragment>
-                        <Card style={{width:"fit-content",textAlign:"center"}}>
-                            <CardBody>
-                                {barData.others}
-
-                            </CardBody>
-
-                            <CardContent>
-                                Others
-                            </CardContent>
-                        </Card>
-                    </Fragment>
-
-                   
                 </div>
 
 
