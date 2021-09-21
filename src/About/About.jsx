@@ -21,8 +21,14 @@ const useStyles = makeStyles((theme) => ({
         backgroundPosition:"center",
         width:"100%",
         fontSize:"3rem",
-        color:"#f6f3f3"
+        color:"#f6f3f3",
 
+    },
+
+    quate:{
+        color:"rgb(158, 186, 186", 
+        paddingTop:"0.5rem",
+        textAlign:"center"
     }
 }))
 
@@ -36,7 +42,7 @@ const About = () => {
                 <div className={classes.header} >
                     <h1 style={{textAlign:"center"}}>ABOUT</h1>
 
-                    <h1 style={{width:"50%",color:"rgb(158, 186, 186", fontSize:"1.5rem",paddingTop:"1rem"}}>Let Our Opportunities OverShadow Our Grievences</h1>
+                    <h6 className={classes.quate} style={{textAlign:"center"}}>Let Our Opportunities OverShadow Our Grievences</h6>
                 </div>
 
 

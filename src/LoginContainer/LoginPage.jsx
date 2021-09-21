@@ -105,14 +105,10 @@ function LoginPage(){
 
                 sessionStorage.setItem("jwtToken",res.data.token);
 
-                cogoToast.success("Login Sucessfull");
-
                 history.push("/home")
             }else{
                 
                 sessionStorage.setItem("jwtToken",res.data.token);
-
-                cogoToast.success("Login Sucessfull");
 
                 history.push("/home");                                                     
 
@@ -162,7 +158,7 @@ function LoginPage(){
                             <Grid item xs={12} sm={6} display={{ xs: "none", lg: "block" }}>
                                     
                                     <h1 className={classes.header} >Grievence Log In</h1>
-                                    <form onSubmit={submitHandler} style={{padding:"0.5rem"}}>
+                                    <form onSubmit={submitHandler} autoComplete="off" style={{padding:"0.5rem"}}>
                                     
                                         <Grid container spacing={1} alignItems="flex-end" >
                                             <Grid item>

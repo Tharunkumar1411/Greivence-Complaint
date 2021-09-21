@@ -9,6 +9,12 @@ import PersonImage from "../Assets/Person.jpg";
 import { Card, CardContent } from '@material-ui/core';
 import { CardBody } from 'reactstrap';
 
+import Hostel from '@material-ui/icons/RoomServiceOutlined';
+import Transport from '@material-ui/icons/EmojiTransportationOutlined';
+import Academic from '@material-ui/icons/BookOutlined';
+
+import Ragging from '@material-ui/icons/RemoveCircleOutline';
+import Other from '@material-ui/icons/QuestionAnswerOutlined';
 
 import Paper from '@material-ui/core/Paper';
 import {
@@ -31,12 +37,16 @@ const useStyles = makeStyles((theme) => ({
     },
 
     card:{
+        display:"flex",
+        gap:"1rem",
         width:"fit-content",
         textAlign:"center",
         display:"flex",
-        flexDirection:"column",
+        flexDirection:"row",
         padding:"1rem",
-        opacity:"0.5"
+        opacity:"0.9",
+        background: "linear-gradient(280deg, rgba(2,0,36,1) 0%, rgba(79,112,194,1) 28%)"
+
     },
     android:{
         width:'50px'
@@ -139,11 +149,11 @@ const ProfilePage = (props) => {
                 <div className={classes.Forflex}>
                     <Fragment>
                         <Card className={classes.card} >
-                            <h6>Hostel {barData.hostel}</h6>
-                            <h6>Academic {barData.academic}</h6>
-                            <h6>Transport {barData.transport}</h6>
-                            <h6>Ragging {barData.ragging}</h6>
-                            <h6>Others {barData.others}</h6>
+                            <h6><Hostel /> {barData.hostel}</h6>
+                            <h6><Academic /> {barData.academic}</h6>
+                            <h6><Transport /> {barData.transport}</h6>
+                            <h6><Ragging /> {barData.ragging}</h6>
+                            <h6><Other /> {barData.others}</h6>
 
                         </Card>
                     </Fragment>
