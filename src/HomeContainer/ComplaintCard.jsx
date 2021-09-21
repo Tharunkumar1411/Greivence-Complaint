@@ -19,27 +19,28 @@ const useStyles = makeStyles((theme) => ({
 
   Brand:{
     backgroundColor:"hsla(0, 100%, 90%, 0.3)"
+  },
+
+  time:{
+    opacity:"0.5",
+    fontSize:"1rem",
+    paddingRight:"0.5rem"
   }
   
 }));
 
 export default function ComplaintCard(props) {
- 
 
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <Accordion className={classes.Brand}>
-   
-        
         <AccordionDetails>
+            <text className={classes.time}>{props.time}</text>
 
-             <text className={classes.Box}><h6 className={classes.Comp}>{props.comp}</h6></text>
-
+            <text className={classes.Box}><h6 className={classes.Comp}>{props.comp}</h6></text>
         </AccordionDetails>
 
-
-   
       </Accordion>
     
     
