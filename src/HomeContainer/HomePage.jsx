@@ -14,7 +14,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Hostell from '@material-ui/icons/RoomServiceOutlined';
 import Transport from '@material-ui/icons/EmojiTransportationOutlined';
 import Academic from '@material-ui/icons/BookOutlined';
-
 import Ragging from '@material-ui/icons/RemoveCircleOutline';
 import Other from '@material-ui/icons/QuestionAnswerOutlined';
 
@@ -40,11 +39,11 @@ import Draggable from 'react-draggable';
 
 function PaperComponent(props) {
     return (
-      <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
-        <Paper {...props} />
-      </Draggable>
+        <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
+            <Paper {...props} />
+        </Draggable>
     );
-  }
+}
 
 const HomePage = () => {
     
@@ -59,20 +58,13 @@ const HomePage = () => {
 
     const [showStore,setShowStore] = useState(false)
 
-    // const [compCount,setCompCount] = useState({HostelComplaint:0,AcademicComplaint:0,TransportComplaint:0,RaggingComplaint:0,UnknownComplaint:0})
-      
     useEffect (() => {
-     
 
         var mail = sessionStorage.getItem("mail");
 
         if(!mail){
             window.location.replace("/");
         }
-            // axios.post("https://grievence-backend.herokuapp.com/getComplaintCount",{Email:mail}).then(res => {
-            //     //https://grievence-backend.herokuapp.com
-            //     setCompCount({...compCount,HostelComplaint:res.data[0],AcademicComplaint:res.data[1],RaggingComplaint:res.data[2],TransportComplaint:res.data[3],UnknownComplaint:res.data[4]})
-            // })
     },[cookie]);
 
     function submitHandler(e){
@@ -84,7 +76,7 @@ const HomePage = () => {
 
         axios.post("https://grievence-backend.herokuapp.com/addComplaint",complaint).then(res => {
             if(res){
-               console.log(res)
+                console.log(res)
 
             }else{
                 alert("enter correct inpost")
@@ -94,11 +86,10 @@ const HomePage = () => {
     
 
     const handleClickOpen = () => {
-      setOpen(true);
+        setOpen(true);
     };
-  
     const handleClose = () => {
-      setOpen(false);
+        setOpen(false);
     };
 
 
@@ -124,48 +115,26 @@ const HomePage = () => {
             default:
                 break;
         }
-  
     }
-    
-
-
-    function Logout() {
-      
-        var cook = sessionStorage.getItem("jwtToken");
-
-        axios.put("https://grievence-backend.herokuapp.com/deleteAccount",cook).then((res)  => {
-
-            if(res) {
-                sessionStorage.removeItem("jwtToken");
-                sessionStorage.removeItem("mail");
-                window.location.replace("/");
-            }else{
-                // cogoToast.error("somethin went wrong!!");
-            }
-
-        })
-    }
-
-    // document.body.style.backgroundImage = `url(${homeBackground})`;
-
     
     return(
 
         <div>
-            <TopNavBar /><br /><br /><br />
+            <TopNavBar />
 
-            <button id="dropdown-basic" onClick={handleClickOpen}>
-                Complaint
-            </button>
+            <div style={{paddingTop:"3.8rem"}}>
+                <button id="dropdown-basic" onClick={handleClickOpen}>
+                    Complaint
+                </button>
 
-            <button id="dropdown-basic" onClick={() => history.push("/about")}>
-                About
-            </button>
+                <button id="dropdown-basic" onClick={() => history.push("/about")}>
+                    About
+                </button>
 
-            
-            <button id="dropdown-basic" onClick={() => history.push("/profile")}>
-                Profile
-            </button>
+                <button id="dropdown-basic" onClick={() => history.push("/profile")}>
+                    Profile
+                </button>
+            </div>
 
         <Dialog
             open={open}

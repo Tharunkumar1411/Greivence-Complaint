@@ -107,11 +107,10 @@ const ProfilePage = (props) => {
         //  console.log(res)
         setBarData({...barData,hostel:res.data[0],academic:res.data[1],ragging:res.data[2],transport:res.data[3],others:res.data[4]})
         })
-   
     },[barData])
 
     const totalComplaintsCount = (barData.hostel + barData.academic + barData.transport + barData.ragging + barData.others);
- 
+
     const chartData = [
         { field: 'Hostel', percentage: barData.hostel },
         { field: 'Academic', percentage: barData.academic },
@@ -119,7 +118,7 @@ const ProfilePage = (props) => {
         { field: 'Ragging', percentage: barData.ragging },
         { field: 'Others', percentage: barData.others },
     
-      ];
+    ];
 
 
     useEffect(() => {
@@ -161,28 +160,13 @@ const ProfilePage = (props) => {
                 </div>
 
 
-                    <div className={classes.chart}>
-                    <Chart
-                            data={chartData} 
-                        >
-                            <ArgumentAxis />
-                
-                            <BarSeries
-                                valueField="percentage"
-                                argumentField="field"
-                                color="rgb(65, 112, 186)"
-                                barWidth="0.5"
-                            />
-                            <Title text="Complaint Percentage" />
-                            <Animation />
-                        </Chart>
+                    <div className={classes.responce}>
+                    
                     </div>
-                       
 
-             
             </div>
 
-      </div>
+    </div>
     )
 }
 
