@@ -12,9 +12,11 @@ import { CardBody } from 'reactstrap';
 import Hostel from '@material-ui/icons/RoomServiceOutlined';
 import Transport from '@material-ui/icons/EmojiTransportationOutlined';
 import Academic from '@material-ui/icons/BookOutlined';
-
 import Ragging from '@material-ui/icons/RemoveCircleOutline';
 import Other from '@material-ui/icons/QuestionAnswerOutlined';
+
+import { DataGrid } from '@mui/x-data-grid';
+
 
 import Paper from '@material-ui/core/Paper';
 import {
@@ -103,7 +105,7 @@ const ProfilePage = (props) => {
 
 
     useEffect(() => {
-        Axios.post("https://grievence-backend.herokuapp.com/getComplaintCount",{Email:sessionStorage.getItem("mail")}).then((res) => {
+        Axios.post("https://gire-backend.herokuapp.com/getComplaintCount",{Email:sessionStorage.getItem("mail")}).then((res) => {
         //  console.log(res)
         setBarData({...barData,hostel:res.data[0],academic:res.data[1],ragging:res.data[2],transport:res.data[3],others:res.data[4]})
         })
@@ -120,15 +122,63 @@ const ProfilePage = (props) => {
     
     ];
 
+    const columns = [
+        { field: 'id', headerName: 'ID', width: 90 },
+        {
+            field: 'complaint',
+            headerName: 'COMPLAINTS',
+            width: 150,
+            editable: true,
+        },
+        {
+            field: 'state',
+            headerName: 'STATE',
+            width: 150,
+            editable: true,
+        },
+        // {
+        //     field: 'fullName',
+        //     headerName: 'Full name',
+        //     description: 'This column has a value getter and is not sortable.',
+        //     sortable: false,
+        //     width: 160,
+        //     valueGetter: (params) =>
+        //         `${params.getValue(params.id, 'firstName') || ''} ${
+        //         params.getValue(params.id, 'lastName') || ''
+        //     }`,
+        {
+            field: "time",
+            headerName: "DATE",
+            sortable: false,
+            width: 160,
+        },
+        
+    ];
+
+    const rows = [
+        { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+        { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
+        { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
+        { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
+        { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+        { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
+        { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
+        { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
+        { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+    ];
+
 
     useEffect(() => {
         
-        Axios.put("https://grievence-backend.herokuapp.com/getUserdetails",{Email:sessionStorage.getItem("mail")}).then((res) => {
-//https://grievence-backend.herokuapp.com
+        Axios.put("https://gire-backend.herokuapp.com/getUserdetails",{Email:sessionStorage.getItem("mail")}).then((res) => {
+//https://gire-backend.herokuapp.com/
             setProfilePage({...ProfilePage,username:res.data.name,email:res.data.email,logedIn:res.data.logedIn})
+        });
+
+        Axios.put("https://gire-backend.herokuapp.com/getDetailsForChart", {email: sessionStorage.getItem("mail")}).then((res) => {
+            console.log(res)
         })
-                                                                                    
-    })
+    });
 
 
     return ( 
@@ -160,8 +210,15 @@ const ProfilePage = (props) => {
                 </div>
 
 
-                    <div className={classes.responce}>
-                    
+                    <div style={{ height: 400, width: '100%' }}>
+                        <DataGrid
+                            rows={rows}
+                            columns={columns}
+                            pageSize={5}
+                            rowsPerPageOptions={[5]}
+                            checkboxSelection
+                            disableSelectionOnClick
+                        />
                     </div>
 
             </div>

@@ -8,7 +8,7 @@ const TransportContainer = () => {
 
 
     useEffect(() => {
-    axios.put("https://grievence-backend.herokuapp.com/getComplaintData",{section:"TRANSPORT"}).then((res)=>{
+    axios.put("https://gire-backend.herokuapp.com/getComplaintData",{section:"TRANSPORT"}).then((res)=>{
         //https://grievence-backend.herokuapp.com
         const array = []
         for (let index = 0; index < res.data.length; index++) {

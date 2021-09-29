@@ -68,11 +68,11 @@ function LoginPage(){
 
     useEffect(() => {
 
-        var cookieCheck = sessionStorage.getItem("jwtToken");
+        var cookieCheck = cookie.get("jwtToken");
         
         if(cookieCheck){
-            axios.put("https://grievence-backend.herokuapp.com/jwt",{jwt:sessionStorage.getItem("jwtToken")}).then((res) => {
-                //https://grievence-backend.herokuapp.com   
+            axios.put("https://gire-backend.herokuapp.com/jwt",{jwt:cookieCheck}).then((res) => {
+                //https://gire-backend.herokuapp.com/  
                 sessionStorage.setItem("mail",res.data);
 
                 history.push("/home");
@@ -96,19 +96,25 @@ function LoginPage(){
 
             handleClickOpen();
 
-            axios.put('https://grievence-backend.herokuapp.com/signIn',details).then(res => {
+            axios.put('https://gire-backend.herokuapp.com/signIn',details).then(res => {
             //grievence-backend.herokuapp.com
-
             sessionStorage.setItem("mail",details.email)
             
             if(res.data == "ALLOWUSER"){
-
-                sessionStorage.setItem("jwtToken",res.data.token);
+                if(details.rememberMe){
+                    cookie.set("jwtToken", res.data.token, {expires:new Date(Date.now() + 5 * 1000)})
+                }
+                // sessionStorage.setItem("jwtToken",res.data.token);
+                //cookie 
 
                 history.push("/home")
             }else{
-                
-                sessionStorage.setItem("jwtToken",res.data.token);
+                if(details.rememberMe){
+
+                    cookie.set("jwtToken", res.data.token,  {expires:new Date(Date.now() + 5 * 1000)})
+                }
+                // sessionStorage.setItem("jwtToken",res.data.token);
+                //cookie
 
                 history.push("/home");                                                     
 
@@ -190,7 +196,7 @@ function LoginPage(){
                                         <input type="checkbox" onChange={(e) => setDetails({...details, rememberMe:!details.rememberMe})}/><label>Remember me</label><br />
 
                                         <ButtonBase   type="submit" className={classes.button} >
-                                             Log In
+                                            Log In
                                         </ButtonBase>
                                     </form>
 

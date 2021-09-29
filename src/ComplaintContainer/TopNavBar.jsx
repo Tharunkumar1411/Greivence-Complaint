@@ -50,32 +50,18 @@ export default function TopNavBar() {
 
   function Logout() {
       
-    var cook = cookie.get("token")
-    axios.put("https://grievence-backend.herokuapp.com/deleteAccount",cook).then((res)  => {
+    var cook = sessionStorage.getItem("mail")
+    axios.put("https://gire-backend.herokuapp.com/deleteAccount",cook).then((res)  => {
         if(res) {
-            sessionStorage.removeItem("jwtToken");
             sessionStorage.removeItem("mail");
             window.location.replace("/");
             setOpen(false);
-
         }
         
 
     })
 }
 
-  // const BackToSignin = () => {
-
-  //   var cook = cookie.get("token")
-  //   axios.put("https://grievence-backend.herokuapp.com/deleteAccount",cook).then((res)  => {
-  //       if(res) {
-  //           cookie.remove("jwtToken");
-  //           cookie.remove("mail");
-  //           history.push("/");
-  //       }
- 
-  // })
-  // }
   
   const classes = useStyles();
 

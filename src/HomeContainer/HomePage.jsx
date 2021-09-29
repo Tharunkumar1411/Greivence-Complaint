@@ -74,7 +74,7 @@ const HomePage = () => {
 
         setOpen(false);
 
-        axios.post("https://grievence-backend.herokuapp.com/addComplaint",complaint).then(res => {
+        axios.post("https://gire-backend.herokuapp.com/addComplaint",complaint).then(res => {
             if(res){
                 console.log(res)
 

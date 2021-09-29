@@ -6,7 +6,7 @@ const OtherContainer = () => {
     const [others,setOthers] = useState(["Testing"]);
 
     useEffect(() => {
-        axios.put("https://grievence-backend.herokuapp.com/getComplaintData",{section:"OTHERS"}).then((res)=>{
+        axios.put("https://gire-backend.herokuapp.com/getComplaintData",{section:"OTHERS"}).then((res)=>{
 
             var array = []
 
