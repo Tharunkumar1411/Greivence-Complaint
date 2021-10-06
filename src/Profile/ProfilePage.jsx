@@ -1,13 +1,9 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Cookies} from 'react-cookie';
 import TopNavBar from '../ComplaintContainer/TopNavBar';
 import Axios from 'axios';
 import Avatar from 'react-avatar';
-import WaveBackground from "../Assets/waveBack.svg";
-import PersonImage from "../Assets/Person.jpg";
-import { Card, CardContent } from '@material-ui/core';
-import { CardBody } from 'reactstrap';
+import { Card } from '@material-ui/core';
 
 import Hostel from '@material-ui/icons/RoomServiceOutlined';
 import Transport from '@material-ui/icons/EmojiTransportationOutlined';
@@ -103,8 +99,9 @@ const ProfilePage = (props) => {
     },[]);
 
     useEffect(() => {
-        fetch(`https://gire-backend.herokuapp.com/getDetailsForChart?email=${sessionStorage.getItem("mail")}`).then((data) => (data.json()).then((data) => {
+        fetch(`https://gire-backend.herokuapp.com/getDetailsForChart?Email=${sessionStorage.getItem("mail")}`).then((data) => (data.json()).then((data) => {
             var tempVar = data
+
             var gridData = [];
             // eslint-disable-next-line array-callback-return
             tempVar.map((value,index) => {

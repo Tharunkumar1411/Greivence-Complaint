@@ -36,6 +36,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
 import Draggable from 'react-draggable';
 
+import cogoToast from 'cogo-toast';
 
 function PaperComponent(props) {
     return (
@@ -48,6 +49,7 @@ function PaperComponent(props) {
 const HomePage = () => {
     
     const cookie = new Cookies();
+    
     const [value,setValue] = useState()
     const history = useHistory(); 
     const [complaint,setComplaint] = useState({radio:"Others",comp:"Empty Complaint",suggetion:"Empty Suggetion",email:sessionStorage.getItem("mail"),date:new Date().toLocaleDateString()});
@@ -76,10 +78,9 @@ const HomePage = () => {
 
         axios.post("https://gire-backend.herokuapp.com/addComplaint",complaint).then(res => {
             if(res){
-                console.log(res)
-
+                cogoToast.success(`${res.data}`);
             }else{
-                alert("enter correct inpost")
+                cogoToast.error("something went wrong")
             }
         })
     }

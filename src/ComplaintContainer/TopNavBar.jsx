@@ -1,14 +1,10 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import {Cookies} from 'react-cookie';
 import axios from 'axios'
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import Fingerprint from '@material-ui/icons/Fingerprint';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -33,9 +29,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TopNavBar() {
-  const cookie = new Cookies();
-
-  const history = useHistory(); 
 
   const [open, setOpen] = React.useState(false);
 
@@ -62,7 +55,6 @@ export default function TopNavBar() {
     })
 }
 
-  
   const classes = useStyles();
 
   return (
