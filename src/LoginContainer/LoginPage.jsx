@@ -100,7 +100,8 @@ function LoginPage(){
             //grievence-backend.herokuapp.com
             sessionStorage.setItem("mail",details.email)
             
-            if(res.data == "ALLOWUSER"){
+            if(res.data.sign){
+                console.log(res.data.sign)
                 if(details.rememberMe){
                     cookie.set("jwtToken", res.data.token, {expires:new Date(Date.now() + 5 * 1000)})
                 }
@@ -109,20 +110,10 @@ function LoginPage(){
 
                 history.push("/home")
             }else{
-                if(details.rememberMe){
-
-                    cookie.set("jwtToken", res.data.token,  {expires:new Date(Date.now() + 5 * 1000)})
-                }
-                // sessionStorage.setItem("jwtToken",res.data.token);
-                //cookie
-
-                history.push("/home");                                                     
-
-
+                cogoToast.error("Enter Valid Password")
             }
             })
         }else{
-
 
             (!checkPattern)? cogoToast.error("Enter Valid Mail Id"): cogoToast.error("Enter Valid Username")
 
