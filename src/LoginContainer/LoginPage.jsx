@@ -97,7 +97,7 @@ function LoginPage(){
             handleClickOpen();
 
             axios.put('https://gire-backend.herokuapp.com/signIn',details).then(res => {
-            //grievence-backend.herokuapp.com
+            //https://gire-backend.herokuapp.com
             sessionStorage.setItem("mail",details.email)
             
             if(res.data.auth){
