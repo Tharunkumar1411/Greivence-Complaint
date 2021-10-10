@@ -52,7 +52,7 @@ const HomePage = () => {
     
     const [value,setValue] = useState()
     const history = useHistory(); 
-    const [complaint,setComplaint] = useState({radio:"Others",comp:"Empty Complaint",suggetion:"Empty Suggetion",email:sessionStorage.getItem("mail"),date:new Date().toLocaleDateString()});
+    const [complaint,setComplaint] = useState({radio:"Others",comp:"Empty Complaint",suggetion:"Empty Suggetion",email:sessionStorage.getItem("mail"),date:new Date().toLocaleDateString(), status:"Pending"});
 
     const [state,setState] = useState(<HostelContainer />)
 
@@ -76,7 +76,7 @@ const HomePage = () => {
 
         setOpen(false);
 
-        axios.post("https://gire-backend.herokuapp.com/addComplaint",complaint).then(res => {
+        axios.post("http://localhost:4000/addComplaint",complaint).then(res => {
             if(res){
                 cogoToast.success(`${res.data}`);
             }else{
