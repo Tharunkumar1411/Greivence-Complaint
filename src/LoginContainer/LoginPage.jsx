@@ -98,17 +98,16 @@ function LoginPage(){
 
             axios.put('https://gire-backend.herokuapp.com/signIn',details).then(res => {
             //https://gire-backend.herokuapp.com
-            sessionStorage.setItem("mail",details.email)
-            
-            if(res.data.auth){
+            sessionStorage.setItem("mail",details.email);
 
+            if(res.data.auth){        
+                console.log(details.rememberMe); 
                 if(details.rememberMe){
-                    cookie.set("jwtToken", res.data.token, {expires:new Date(Date.now() + 5 * 1000)})
+                    cookie.set("jwtToken", res.data.token, {path:"/"});
+                    history.push("/home");
+                }else{
+                    history.push("/home");
                 }
-                // sessionStorage.setItem("jwtToken",res.data.token);
-                //cookie 
-
-                history.push("/home");
             }else{
                 cogoToast.error("Enter Valid Password");
                 setOpen(false);

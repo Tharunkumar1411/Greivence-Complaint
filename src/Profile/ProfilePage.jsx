@@ -74,8 +74,13 @@ const columns = [
     {
         field: 'complaint',
         headerName: 'COMPLAINT',
-        width:300
+        width:200
     },
+    {
+        field: 'suggetion',
+        headerName: 'SUGGETION',
+        width:200
+    }
 ];
 
 const ProfilePage = (props) => {
@@ -100,15 +105,18 @@ const ProfilePage = (props) => {
 
     useEffect(() => {
         fetch(`https://gire-backend.herokuapp.com/getDetailsForChart?Email=${sessionStorage.getItem("mail")}`).then((data) => (data.json()).then((data) => {
-            var tempVar = data
+            
+        var compData = [...data[0].comp, ...data[1].comp, ...data[2].comp, ...data[3].comp, ...data[4].comp];
+        var suggData = [...data[0].suggetion, ...data[1].suggetion, ...data[2].suggetion, ...data[3].suggetion, ...data[4].suggetion]
 
             var gridData = [];
             // eslint-disable-next-line array-callback-return
-            tempVar.map((value,index) => {
+            compData.map((value,index) => {
                 if(value !== 0){
                     return gridData.push({
                         id: index + 1,
-                        complaint: value
+                        complaint: value,
+                        suggetion: suggData[index]
                     })
                 }
             });

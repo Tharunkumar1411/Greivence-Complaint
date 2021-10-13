@@ -12,7 +12,6 @@ function App(){
     return (
         <div>
             <BrowserRouter>
-        
                 <Switch>
                     <Route path="/" exact component={LoginPage} />
                     <Route path="/home" component={HomePage} />
@@ -20,7 +19,6 @@ function App(){
                     <Route path="/profile" component={ProfilePage} /> 
                 </Switch>
             </BrowserRouter>
-           
         </div>
     )
 }

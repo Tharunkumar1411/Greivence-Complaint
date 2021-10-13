@@ -76,7 +76,7 @@ const HomePage = () => {
 
         setOpen(false);
 
-        axios.post("http://localhost:4000/addComplaint",complaint).then(res => {
+        axios.post("https://gire-backend.herokuapp.com/addComplaint",complaint).then(res => {
             if(res){
                 cogoToast.success(`${res.data}`);
             }else{

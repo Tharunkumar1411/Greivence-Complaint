@@ -2,6 +2,9 @@ import React from 'react'
 import App from './App'
 import ReactDOM from 'react-dom'
 import './App.css'
+import { CookiesProvider } from "react-cookie";
 
 import {BrowserRouter as Router} from 'react-router-dom';
-ReactDOM.render(<Router><App /></Router>,document.getElementById('root'))
+ReactDOM.render(<CookiesProvider>
+    <Router><App /></Router>
+</CookiesProvider>,document.getElementById('root'))
