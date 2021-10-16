@@ -69,10 +69,13 @@ function LoginPage(){
     useEffect(() => {
 
         var cookieCheck = cookie.get("jwtToken");
-        
+        console.log(cookieCheck,"outside")
         if(cookieCheck){
-            axios.put("https://gire-backend.herokuapp.com/jwt",{jwt:cookieCheck}).then((res) => {
+            console.log(cookieCheck,"inside");
+
+            axios.put("http://localhost:4000/jwt",{jwt:cookieCheck}).then((res) => {
                 //https://gire-backend.herokuapp.com/  
+                console.log(res);
                 sessionStorage.setItem("mail",res.data);
 
                 history.push("/home");

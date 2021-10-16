@@ -11,6 +11,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle'
+import {Cookies} from 'react-cookie';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 export default function TopNavBar() {
 
   const [open, setOpen] = React.useState(false);
+  const cookie = new Cookies();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -47,6 +49,7 @@ export default function TopNavBar() {
     axios.put("https://gire-backend.herokuapp.com/deleteAccount",cook).then((res)  => {
         if(res) {
             sessionStorage.removeItem("mail");
+            cookie.remove("jwtToken");
             window.location.replace("/");
             setOpen(false);
         }
