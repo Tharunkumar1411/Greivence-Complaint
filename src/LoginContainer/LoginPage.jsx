@@ -73,7 +73,7 @@ function LoginPage(){
         if(cookieCheck){
             console.log(cookieCheck,"inside");
 
-            axios.put("http://localhost:4000/jwt",{jwt:cookieCheck}).then((res) => {
+            axios.put("https://gire-backend.herokuapp.com/jwt",{jwt:cookieCheck}).then((res) => {
                 //https://gire-backend.herokuapp.com/  
                 console.log(res);
                 sessionStorage.setItem("mail",res.data);
