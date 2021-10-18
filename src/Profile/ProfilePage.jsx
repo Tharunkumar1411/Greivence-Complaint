@@ -12,7 +12,10 @@ import Ragging from '@material-ui/icons/RemoveCircleOutline';
 import Other from '@material-ui/icons/QuestionAnswerOutlined';
 import { DataGrid } from '@mui/x-data-grid';
 
-
+import Dialog from '@material-ui/core/Dialog';
+import Draggable from 'react-draggable';
+import Paper from '@material-ui/core/Paper';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -80,15 +83,29 @@ const columns = [
         field: 'suggetion',
         headerName: 'SUGGETION',
         width:200
+    },
+    {
+        field: 'date',
+        headerName: 'DATE',
+        width: 200
     }
 ];
+
+function PaperComponent(props) {
+    return (
+        <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
+        <Paper {...props} />
+        </Draggable>
+    );
+}
 
 const ProfilePage = (props) => {
     const [ProfilePage,setProfilePage] = useState({username:'issues to access',email:'issues to access',logedIn:""});
     const [barData,setBarData] = useState({hostel:0,academic:0,transport:0,ragging:0,others:0})
     const classes = useStyles();
     const [data, setData] = useState([])
-
+    const [open, setOpen] = React.useState(false);
+    const [compData, setCompData] = useState({complaints:"issues to access", suggetion:"issues to access", date:"issues to access"})
     useEffect(() => {
 
         Axios.post("https://gire-backend.herokuapp.com/getComplaintCount",{Email:sessionStorage.getItem("mail")}).then((res) => {
@@ -108,6 +125,7 @@ const ProfilePage = (props) => {
             
         var compData = [...data[0].comp, ...data[1].comp, ...data[2].comp, ...data[3].comp, ...data[4].comp];
         var suggData = [...data[0].suggetion, ...data[1].suggetion, ...data[2].suggetion, ...data[3].suggetion, ...data[4].suggetion]
+        var dateData = [...data[0].date, ...data[1].date, ...data[2].date, ...data[3].date, ...data[4].date]
 
             var gridData = [];
             // eslint-disable-next-line array-callback-return
@@ -116,13 +134,24 @@ const ProfilePage = (props) => {
                     return gridData.push({
                         id: index + 1,
                         complaint: value,
-                        suggetion: suggData[index]
+                        suggetion: suggData[index],
+                        date: dateData[index]
                     })
                 }
             });
             setData(gridData);
         }));
     },[]);
+
+    
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    
+    const handleClose = () => {
+        setOpen(false);
+    };
+
 
     return ( 
         <div classname={classes.root}>
@@ -160,11 +189,31 @@ const ProfilePage = (props) => {
                         checkboxSelection
                         disableSelectionOnClick
                         onRowClick = {(data) => {
-                            console.log(data.row.complaint)
+                            setOpen(true);
+                            setCompData({...compData, complaints:data.row.complaint, 
+                                suggetion:data.row.suggetion, date: data.row.date})
                         }}
                     />                    
 
                 </div>
+
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    PaperComponent={PaperComponent}
+                    aria-labelledby="draggable-dialog-title"
+                    fullWidth="true"
+                    style={{opacity:"0.8", }}
+                >
+            <DialogTitle style={{ cursor: 'move'}} id="draggable-dialog-title"> 
+                COMPLAINT: <label><h5>{compData.complaints}</h5></label><br />
+                SUGGETION: <label><h5>{compData.suggetion}</h5></label><br />
+                DATE     : <label><h5>{compData.date}</h5></label>
+            </DialogTitle>
+
+
+        </Dialog>
+
         </div>
     </div>
     )
