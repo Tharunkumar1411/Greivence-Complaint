@@ -189,7 +189,7 @@ const ProfilePage = (props) => {
                         checkboxSelection
                         disableSelectionOnClick
                         onRowClick = {(data) => {
-                            setOpen(true);
+                            handleClickOpen();
                             setCompData({...compData, complaints:data.row.complaint, 
                                 suggetion:data.row.suggetion, date: data.row.date})
                         }}
@@ -203,14 +203,13 @@ const ProfilePage = (props) => {
                     PaperComponent={PaperComponent}
                     aria-labelledby="draggable-dialog-title"
                     fullWidth="true"
-                    style={{opacity:"0.8", }}
                 >
-            <DialogTitle style={{ cursor: 'move'}} id="draggable-dialog-title"> 
+            <DialogTitle style={{ cursor: 'move', color:"grey"}} id="draggable-dialog-title"> 
                 COMPLAINT: <label><h5>{compData.complaints}</h5></label><br />
                 SUGGETION: <label><h5>{compData.suggetion}</h5></label><br />
                 DATE     : <label><h5>{compData.date}</h5></label>
-            </DialogTitle>
 
+            </DialogTitle>
 
         </Dialog>
 
