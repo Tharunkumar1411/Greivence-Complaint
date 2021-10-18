@@ -69,15 +69,10 @@ function LoginPage(){
     useEffect(() => {
 
         var cookieCheck = cookie.get("jwtToken");
-        console.log(cookieCheck,"outside")
         if(cookieCheck){
-            console.log(cookieCheck,"inside");
-
             axios.put("https://gire-backend.herokuapp.com/jwt",{jwt:cookieCheck}).then((res) => {
                 //https://gire-backend.herokuapp.com/  
-                console.log(res);
                 sessionStorage.setItem("mail",res.data);
-
                 history.push("/home");
             })
         }
@@ -104,7 +99,6 @@ function LoginPage(){
             sessionStorage.setItem("mail",details.email);
 
             if(res.data.auth){        
-                console.log(details.rememberMe); 
                 if(details.rememberMe){
                     cookie.set("jwtToken", res.data.token, {path:"/"});
                     history.push("/home");
