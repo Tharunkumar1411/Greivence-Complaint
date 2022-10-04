@@ -108,20 +108,20 @@ const ProfilePage = (props) => {
     const [compData, setCompData] = useState({complaints:"issues to access", suggetion:"issues to access", date:"issues to access"})
     useEffect(() => {
 
-        Axios.post("https://gire-backend.herokuapp.com/getComplaintCount",{Email:sessionStorage.getItem("mail")}).then((res) => {
+        Axios.post("http://localhost:4000/getComplaintCount",{Email:sessionStorage.getItem("mail")}).then((res) => {
         //  console.log(res)
         setBarData({...barData,hostel:res.data[0],academic:res.data[1],ragging:res.data[2],transport:res.data[3],others:res.data[4]})
         });
         
-        Axios.put("https://gire-backend.herokuapp.com/getUserdetails",{Email:sessionStorage.getItem("mail")}).then((res) => {
-            //https://gire-backend.herokuapp.com/
+        Axios.put("http://localhost:4000/getUserdetails",{Email:sessionStorage.getItem("mail")}).then((res) => {
+            //http://localhost:4000/
             setProfilePage({...ProfilePage,username:res.data.name,email:res.data.email,logedIn:res.data.logedIn})
         });
         
     },[]);
 
     useEffect(() => {
-        fetch(`https://gire-backend.herokuapp.com/getDetailsForChart?Email=${sessionStorage.getItem("mail")}`).then((data) => (data.json()).then((data) => {
+        fetch(`http://localhost:4000/getDetailsForChart?Email=${sessionStorage.getItem("mail")}`).then((data) => (data.json()).then((data) => {
             
         var compData = [...data[0].comp, ...data[1].comp, ...data[2].comp, ...data[3].comp, ...data[4].comp];
         var suggData = [...data[0].suggetion, ...data[1].suggetion, ...data[2].suggetion, ...data[3].suggetion, ...data[4].suggetion]

@@ -70,8 +70,8 @@ function LoginPage(){
 
         var cookieCheck = cookie.get("jwtToken");
         if(cookieCheck){
-            axios.put("https://gire-backend.herokuapp.com/jwt",{jwt:cookieCheck}).then((res) => {
-                //https://gire-backend.herokuapp.com/  
+            axios.put("http://localhost:4000/jwt",{jwt:cookieCheck}).then((res) => {
+                //http://localhost:4000/  
                 sessionStorage.setItem("mail",res.data);
                 history.push("/home");
             })
@@ -94,8 +94,8 @@ function LoginPage(){
 
             handleClickOpen();
 
-            axios.put('https://gire-backend.herokuapp.com/signIn',details).then(res => {
-            //https://gire-backend.herokuapp.com
+            axios.put('http://localhost:4000/signIn',details).then(res => {
+            //http://localhost:4000
             sessionStorage.setItem("mail",details.email);
 
             if(res.data.auth){        

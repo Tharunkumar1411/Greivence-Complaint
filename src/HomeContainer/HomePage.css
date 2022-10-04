@@ -43,25 +43,19 @@
 
 .Tabdesign {
     border: none;
-
 }
 
 .designComplaint {
-
     width: 50%;
     height: 100px;
 }
 
 #bottomNav{
-
     outline: none;
     position: fixed;
     bottom: 0;
     width: 100%;
     overflow: hidden;
-  
- 
-
 }
 
 body
@@ -71,4 +65,8 @@ background-size:cover;
 background-position:center;
 bottom:0;
 width:100% /* replace "url from the web" with your url*/
+}
+
+.stateDiv {
+    padding-top: 5rem;
 }

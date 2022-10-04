@@ -7,7 +7,7 @@ const RaggingContainer = () => {
 
 
     useEffect(() => {
-        axios.put("https://gire-backend.herokuapp.com/getComplaintData",{section:"RAGGING"}).then((res)=>{
+        axios.put("http://localhost:4000/getComplaintData",{section:"RAGGING"}).then((res)=>{
 
             var array = []
             var timeLog = []

@@ -6,7 +6,7 @@ const HostelContainer = () => {
     const [hostels,setHostels] = useState(["Testing"])
 
     useEffect(() => {
-        axios.put("https://gire-backend.herokuapp.com/getComplaintData",{section:"HOSTEL"}).then((res)=>{
+        axios.put("http://localhost:4000/getComplaintData",{section:"HOSTEL"}).then((res)=>{
             //https://grievence-backend.herokuapp.com
             var array = []
 

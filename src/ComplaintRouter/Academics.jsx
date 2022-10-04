@@ -9,7 +9,7 @@ const AcademicContainer = () => {
 
 
     useEffect(() => {
-        axios.put("https://gire-backend.herokuapp.com/getComplaintData",{section:"ACADEMIC"}).then((res)=>{
+        axios.put("http://localhost:4000/getComplaintData",{section:"ACADEMIC"}).then((res)=>{
             //https://grievence-backend.herokuapp.com
             var array = []
 
