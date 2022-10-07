@@ -37,6 +37,7 @@ import Paper from '@material-ui/core/Paper';
 import Draggable from 'react-draggable';
 
 import cogoToast from 'cogo-toast';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function PaperComponent(props) {
     return (
@@ -124,7 +125,13 @@ const HomePage = () => {
             <TopNavBar />
 
             <div class="stateDiv">
-                {state}<br /><br />
+                <Container>
+                    <Row>
+                        <Col md={4} >
+                        {state}<br /><br />
+                        </Col>
+                    </Row>
+                </Container>
             </div>
 
             <BottomNavigation id="bottomNav"
