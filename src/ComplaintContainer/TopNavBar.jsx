@@ -40,9 +40,6 @@ const useStyles = makeStyles((theme) => ({
   app:{
     position:'fixed',
   },
-  postBtn :{
-    pointerEvents:"none",
-  }
 }));
 
 function PaperComponent(props) {
@@ -79,6 +76,11 @@ const handleCompClose = () => {
 function submitHandler(e){
   e.preventDefault();
 
+  if(complaint.radio == null){
+    cogoToast.info("Select a field you want to raise your grievence!")
+  }else if(complaint.comp == null){
+    cogoToast.info("Empty Grievence can't acceptable!")
+  }
 
   axios.post("http://localhost:4000/addComplaint",complaint).then(res => {
       if(res){
@@ -114,7 +116,7 @@ function submitHandler(e){
       <AppBar position="static" className={classes.app}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Grievence of VCET
+            Grievence of VCE
           </Typography>
 
           <Button color="inherit" onClick={handleCompOpen}><ComplaintIcon /></Button>
@@ -187,16 +189,16 @@ function submitHandler(e){
                   />
               </form>
             </DialogContent>
-                            <DialogActions>
+              <DialogActions>
 
-                                <Button autoFocus onClick={handleCompClose} color="primary">
-                                    Cancel
-                                </Button>
+                <Button autoFocus onClick={handleCompClose} color="primary">
+                  Cancel
+                </Button>
 
-                                <Button onClick={submitHandler} color="primary" className={classes.postBtn}>
-                                    Post
-                                </Button>
-                            </DialogActions>
+                <Button onClick={submitHandler} color="primary" className={classes.postBtn}>
+                  Post
+                </Button>
+              </DialogActions>
         </Dialog>
 
     </div>
