@@ -82,7 +82,7 @@ function submitHandler(e){
     cogoToast.info("Empty Grievence can't acceptable!")
   }
 
-  axios.post("http://localhost:4000/addComplaint",complaint).then(res => {
+  axios.post("https://grievence-back.onrender.com/addComplaint",complaint).then(res => {
       if(res){
           cogoToast.success(`${res.data}`);
           handleCompClose();
@@ -97,7 +97,7 @@ function submitHandler(e){
   function Logout() {
       
     var cook = sessionStorage.getItem("mail")
-    axios.put("http://localhost:4000/deleteAccount",cook).then((res)  => {
+    axios.put("https://grievence-back.onrender.com/deleteAccount",cook).then((res)  => {
         if(res) {
             sessionStorage.removeItem("mail");
             cookie.remove("jwtToken");
@@ -116,7 +116,7 @@ function submitHandler(e){
       <AppBar position="static" className={classes.app}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Grievence of VCE
+            Grievence of VCET
           </Typography>
 
           <Button color="inherit" onClick={handleCompOpen}><ComplaintIcon /></Button>

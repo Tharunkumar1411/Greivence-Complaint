@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import ComplaintCard from "../HomeContainer/ComplaintCard"
 import axios from 'axios'
+import { Card, CardHeader, Grid } from '@material-ui/core';
 
 
 const AcademicContainer = () => {
@@ -9,7 +10,7 @@ const AcademicContainer = () => {
 
 
     useEffect(() => {
-        axios.put("http://localhost:4000/getComplaintData",{section:"ACADEMIC"}).then((res)=>{
+        axios.put("https://grievence-back.onrender.com/getComplaintData",{section:"ACADEMIC"}).then((res)=>{
             //https://grievence-backend.herokuapp.com
             var array = []
 
@@ -27,9 +28,18 @@ const AcademicContainer = () => {
     },[])
 
         return(
-            <div className="div">
-                {academics.map((hos,i)=> <ComplaintCard key={i} comp={hos.complaint} time={hos.time} brand={"Academics"}/>)}
-            </div>
+        <div style={{display:"flex", justifyContent:"center"}}>
+            <Grid container spacing={2}>
+                {academics.map((hos,i) => {
+                    return(
+                        <Grid item xs={12} sm={4} md={4} key={i} >
+                            <ComplaintCard key={i} comp={hos.complaint} time={hos.time} brand={"Academics"}/>
+                        </Grid>
+                    )
+                })}
+            </Grid>
+        </div>
+
         )
 }
 

@@ -70,8 +70,8 @@ function LoginPage(){
 
         var cookieCheck = cookie.get("jwtToken");
         if(cookieCheck){
-            axios.put("http://localhost:4000/jwt",{jwt:cookieCheck}).then((res) => {
-                //http://localhost:4000/  
+            axios.put("https://grievence-back.onrender.com/jwt",{jwt:cookieCheck}).then((res) => {
+                //https://grievence-back.onrender.com/  
                 sessionStorage.setItem("mail",res.data);
                 history.push("/home");
             })
@@ -94,8 +94,8 @@ function LoginPage(){
 
             handleClickOpen();
 
-            axios.put('http://localhost:4000/signIn',details).then(res => {
-            //http://localhost:4000
+            axios.put('https://grievence-back.onrender.com/signIn',details).then(res => {
+            //https://grievence-back.onrender.com
             sessionStorage.setItem("mail",details.email);
 
             if(res.data.auth){        

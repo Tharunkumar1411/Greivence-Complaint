@@ -1,13 +1,14 @@
 import React,{useEffect,useState} from 'react';
 import ComplaintCard from "../HomeContainer/ComplaintCard"
 import axios from 'axios'
+import { Grid } from '@material-ui/core';
 
 const RaggingContainer = () => {
     const [raggings,setRagging] = useState(["Testing"])
 
 
     useEffect(() => {
-        axios.put("http://localhost:4000/getComplaintData",{section:"RAGGING"}).then((res)=>{
+        axios.put("https://grievence-back.onrender.com/getComplaintData",{section:"RAGGING"}).then((res)=>{
 
             var array = []
             var timeLog = []
@@ -22,9 +23,15 @@ const RaggingContainer = () => {
     },[]);
 
         return(
-            <div className="div">
-                {raggings.map((hos,i)=> <ComplaintCard key={i} comp={hos.complaint} time={hos.time} brand={"Ragging"}/>)}
-            </div>
+        <Grid container spacing={2}>    
+            {raggings.map((hos,i) => {
+                return(
+                    <Grid item xs={12} sm={4} md={4} key={i} >
+                        <ComplaintCard key={i} comp={hos.complaint} time={hos.time} brand={"Ragging"}/>
+                    </Grid>
+                )
+            })}
+        </Grid>
         )
 }
 

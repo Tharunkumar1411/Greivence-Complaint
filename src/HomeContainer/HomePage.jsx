@@ -64,7 +64,7 @@ const HomePage = () => {
     
     return(
 
-        <div>
+        <div style={{overflow:"hidden"}}>
             <TopNavBar />
 
             <div class="stateDiv">
