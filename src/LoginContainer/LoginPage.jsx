@@ -97,7 +97,7 @@ function LoginPage(){
             axios.put('https://grievence-back.onrender.com/signIn',details).then(res => {
             //https://grievence-back.onrender.com
             sessionStorage.setItem("mail",details.email);
-
+            console.log(res);
             if(res.data.auth){        
                 if(details.rememberMe){
                     cookie.set("jwtToken", res.data.token, {path:"/"});
@@ -159,7 +159,9 @@ function LoginPage(){
                                                 <AccountCircle />
                                             </Grid>
                                             <Grid item>
-                                                <TextField id="input-with-icon-grid" onChange= {e =>setDetails({...details,name:e.target.value})} value={details.name} type="text" label="Username" />
+                                                <TextField id="input-with-icon-grid" 
+                                                onChange= {e =>setDetails({...details,name:e.target.value})} 
+                                                value={details.name} type="text" label="Username"/>
                                             </Grid>
                                         </Grid>
 

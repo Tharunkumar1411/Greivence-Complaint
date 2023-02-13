@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardHeader} from '@material-ui/core';
+import { Card, CardHeader, Dialog, DialogContent, DialogTitle} from '@material-ui/core';
+import { CardBody } from 'reactstrap';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,13 +43,48 @@ export default function ComplaintCard(props) {
 
   const classes = useStyles();
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+      setOpen(true);
+  };
+
+  const handleClose = () => {
+      setOpen(false);
+  };
+
   return (
-      <Card className={classes.homeCard} >
+    <div>
+    <Card className={classes.homeCard} onClick={handleClickOpen}>
           <CardHeader
             title={props.comp}
             subheader={props.time}
           />
       </Card>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="draggable-dialog-title"
+        fullWidth="true"
+        >
+        <DialogTitle style={{ cursor: 'move', textAlign:"center" }} id="draggable-dialog-title"> 
+            Grievence Status
+        </DialogTitle>
+
+        <DialogContent>
+            <div>
+              <ul>
+                <li>Grievence : {props.comp}</li>
+                <li>Grievence Status: {props.status}</li>
+                <li>Comitte Response : NILL</li>
+              </ul>
+            </div>
+        </DialogContent>
+
+        </Dialog>
+    </div>
+
   );
 }
 

@@ -26,6 +26,8 @@ import Draggable from 'react-draggable';
 import ComplaintIcon from "@material-ui/icons/BookOutlined"
 import LogoutIcon from "@material-ui/icons/OpenWithOutlined"
 import cogoToast from 'cogo-toast';
+import { Person } from '@material-ui/icons';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,7 +53,7 @@ function PaperComponent(props) {
 }
 export default function TopNavBar() {
   
-  const [complaint,setComplaint] = React.useState({radio: null,comp: null,suggetion: null,email:sessionStorage.getItem("mail"),date:new Date().toLocaleDateString(), status:"Pending"});
+  const [complaint,setComplaint] = React.useState({radio: null,comp: null,suggetion: null,email:sessionStorage.getItem("mail"),date:new Date().toLocaleDateString(), status:"Pending", response: 'NILL'});
 
   const [open, setOpen] = React.useState(false);
   const [openComp, setComp] = React.useState(false);
@@ -110,15 +112,16 @@ function submitHandler(e){
 }
 
   const classes = useStyles();
+  const navigate = useHistory();
 
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.app}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Grievence of VCET
+            Grievence
           </Typography>
-
+          <Button color="inherit" onClick={() => navigate.push("/profile")}><Person /></Button>
           <Button color="inherit" onClick={handleCompOpen}><ComplaintIcon /></Button>
           <Button color="inherit" onClick={handleClickOpen}><LogoutIcon /></Button>
         </Toolbar>

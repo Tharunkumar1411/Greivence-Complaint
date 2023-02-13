@@ -26,7 +26,7 @@ const RaggingContainer = () => {
         <Grid container spacing={2}>    
             {raggings.map((hos,i) => {
                 return(
-                    <Grid item xs={12} sm={4} md={4} key={i} >
+                    <Grid item xs={12} sm={6} md={6} key={i} >
                         <ComplaintCard key={i} comp={hos.complaint} time={hos.time} brand={"Ragging"}/>
                     </Grid>
                 )
