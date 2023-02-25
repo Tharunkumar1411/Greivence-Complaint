@@ -1,21 +1,19 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import TopNavBar from '../ComplaintContainer/TopNavBar';
 import Axios from 'axios';
 import Avatar from 'react-avatar';
-import { Card } from '@material-ui/core';
 
-import Hostel from '@material-ui/icons/RoomServiceOutlined';
-import Transport from '@material-ui/icons/EmojiTransportationOutlined';
-import Academic from '@material-ui/icons/BookOutlined';
-import Ragging from '@material-ui/icons/RemoveCircleOutline';
-import Other from '@material-ui/icons/QuestionAnswerOutlined';
+import Hostel from "@mui/icons-material/RoomServiceOutlined";
+import Transport from "@mui/icons-material/EmojiTransportationOutlined";
+import Academic from "@mui/icons-material/BookOutlined";
+import Ragging from "@mui/icons-material/RemoveCircleOutline";
+import Other from "@mui/icons-material/QuestionAnswerOutlined";
+
 import { DataGrid } from '@mui/x-data-grid';
 
-import Dialog from '@material-ui/core/Dialog';
 import Draggable from 'react-draggable';
-import Paper from '@material-ui/core/Paper';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import { makeStyles } from '@mui/styles';
+import { Card, Dialog, DialogTitle, Paper } from '@mui/material';
 
 
 const useStyles = makeStyles((theme) => ({
