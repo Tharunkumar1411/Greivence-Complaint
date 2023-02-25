@@ -85,6 +85,7 @@ function submitHandler(e){
   }
 
   axios.post("https://grievence-back.onrender.com/addComplaint",complaint).then(res => {
+      console.log(res);
       if(res){
           cogoToast.success(`${res.data}`);
           handleCompClose();
