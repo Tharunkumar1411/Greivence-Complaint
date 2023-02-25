@@ -1,22 +1,17 @@
 import React,{useState,useEffect} from 'react'
-import '@material-ui/core'
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import {Cookies} from 'react-cookie';
-import { makeStyles } from '@material-ui/styles';
-import { ButtonBase, Grid, Hidden, TextField } from '@material-ui/core';
-import { AccountCircle, EmailOutlined, LockOpen } from '@material-ui/icons';
 
 import LoginPicture from "../Assets/LoginPic.svg"
 import Wave from "../Assets/wavefour.svg"
 import cogoToast from 'cogo-toast';
 
-import Dialog from '@material-ui/core/Dialog';
 import Draggable from 'react-draggable';
-import Paper from '@material-ui/core/Paper';
-import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { Bars     } from 'react-loading-icons'
+import { ButtonBase, Dialog, DialogTitle, Grid, Hidden, makeStyles, Paper, TextField } from '@mui/material';
+import { AccountCircle, EmailOutlined, LockOpen } from '@mui/icons-material';
 
 function PaperComponent(props) {
     return (

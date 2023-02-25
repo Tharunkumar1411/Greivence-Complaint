@@ -1,8 +1,8 @@
 
 import React from "react";
 import TopNavBar from "../ComplaintContainer/TopNavBar"
-import { makeStyles } from "@material-ui/core";
 import headerBackground from "../Assets/aboutBackground.jpg";
+import { makeStyles } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
     para:{

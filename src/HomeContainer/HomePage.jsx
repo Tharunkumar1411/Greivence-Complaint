@@ -2,14 +2,15 @@ import React,{useState, useEffect} from 'react';
 import './HomePage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import { Badge, BottomNavigation, BottomNavigationAction, Button, Card, CardContent, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, Grid, Hidden, makeStyles, Paper, Radio, RadioGroup, TextField } from '@mui/material';
 
-import Hostell from '@material-ui/icons/RoomServiceOutlined';
-import Transport from '@material-ui/icons/EmojiTransportationOutlined';
-import Academic from '@material-ui/icons/BookOutlined';
-import Ragging from '@material-ui/icons/RemoveCircleOutline';
-import Other from '@material-ui/icons/QuestionAnswerOutlined';
+
+import Hostell from "@mui/icons-material/RoomServiceOutlined";
+import Transport from "@mui/icons-material/EmojiTransportationOutlined";
+import Academic from "@mui/icons-material/BookOutlined";
+import Ragging from "@mui/icons-material/RemoveCircleOutline";
+import Other from "@mui/icons-material/QuestionAnswerOutlined";
+
 
 import HostelContainer from "../ComplaintRouter/Hostel";
 import TransportContainer from "../ComplaintRouter/Transport"
@@ -17,20 +18,8 @@ import AcademicContainer from "../ComplaintRouter/Academics"
 import RaggingContainer from "../ComplaintRouter/Ragging"
 import OtherContainer from "../ComplaintRouter/Others"
 
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle'
-
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-
 import TopNavBar from "../ComplaintContainer/TopNavBar"
 import {Cookies} from 'react-cookie';
-import { Badge, Button, Card, CardContent, Grid, Hidden, makeStyles, Paper } from '@material-ui/core';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 import Draggable from 'react-draggable';

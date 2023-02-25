@@ -1,33 +1,16 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import axios from 'axios'
 
 
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle'
-
 import {Cookies} from 'react-cookie';
 
-import Paper from '@material-ui/core/Paper';
 import Draggable from 'react-draggable';
 
-import ComplaintIcon from "@material-ui/icons/BookOutlined"
-import LogoutIcon from "@material-ui/icons/OpenWithOutlined"
 import cogoToast from 'cogo-toast';
-import { Person } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
+import { makeStyles } from '@mui/styles';
+import { AppBar, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, Paper, Radio, RadioGroup, TextField, Toolbar, Typography } from '@mui/material';
+import { LogoutOutlined, Person, PersonPinCircle } from '@mui/icons-material';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -123,8 +106,8 @@ function submitHandler(e){
             Grievence
           </Typography>
           <Button color="inherit" onClick={() => navigate.push("/profile")}><Person /></Button>
-          <Button color="inherit" onClick={handleCompOpen}><ComplaintIcon /></Button>
-          <Button color="inherit" onClick={handleClickOpen}><LogoutIcon /></Button>
+          <Button color="inherit" onClick={handleCompOpen}><PersonPinCircle /></Button>
+          <Button color="inherit" onClick={handleClickOpen}><LogoutOutlined /></Button>
         </Toolbar>
       </AppBar>
 
