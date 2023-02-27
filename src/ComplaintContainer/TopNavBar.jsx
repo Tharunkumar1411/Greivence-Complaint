@@ -8,9 +8,27 @@ import Draggable from 'react-draggable';
 
 import cogoToast from 'cogo-toast';
 import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@mui/styles';
-import { AppBar, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, Paper, Radio, RadioGroup, TextField, Toolbar, Typography } from '@mui/material';
-import { LogoutOutlined, Person, PersonPinCircle } from '@mui/icons-material';
+import makeStyles from '@mui/styles/makeStyles';
+
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import Paper from '@mui/material/Paper';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import TextField from '@mui/material/TextField'
+import LogoutOutlined from '@mui/icons-material/LogoutOutlined';
+import Person from '@mui/icons-material/Person';
+import PersonPinCircle from '@mui/icons-material/PersonPinCircle';
+
+import AppBar from '@mui/material/AppBar';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import  FormControlLabel from '@mui/material/FormControlLabel';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -148,7 +166,7 @@ function submitHandler(e){
 
             <form>
                 <RadioGroup aria-label="gender" name="gender1" row>
-                  <FormControlLabel   control={<Radio />} label="Hostel" value="Hostel"  onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>
+                  <FormControlLabel  control={<Radio />} label="Hostel" value="Hostel"  onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>
                   <FormControlLabel  control={<Radio />} label="Ragging" value="Ragging" onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>
                   <FormControlLabel control={<Radio />} label="Academics" value="Academics"  onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>
                   <FormControlLabel control={<Radio />} label="Other" value="Others"  onChange={e => setComplaint({...complaint,radio:e.target.value})} required/>

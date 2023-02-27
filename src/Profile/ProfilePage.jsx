@@ -13,7 +13,10 @@ import { DataGrid } from '@mui/x-data-grid';
 
 import Draggable from 'react-draggable';
 import { makeStyles } from '@mui/styles';
-import { Card, Dialog, DialogTitle, Paper } from '@mui/material';
+import Card from '@mui/material/Card';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import Paper from '@mui/material/Paper';
 
 
 const useStyles = makeStyles((theme) => ({

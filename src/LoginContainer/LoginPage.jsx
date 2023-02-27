@@ -10,8 +10,19 @@ import cogoToast from 'cogo-toast';
 import Draggable from 'react-draggable';
 
 import { Bars     } from 'react-loading-icons'
-import { ButtonBase, Dialog, DialogTitle, Grid, Hidden, makeStyles, Paper, TextField } from '@mui/material';
-import { AccountCircle, EmailOutlined, LockOpen } from '@mui/icons-material';
+
+import Dialog from '@mui/material/Dialog';
+import  DialogTitle from '@mui/material/DialogTitle';
+import  Grid from '@mui/material/Grid';
+import  Hidden from '@mui/material/Hidden';
+import makeStyles from '@mui/styles/makeStyles';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
+
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import EmailOutlined from '@mui/icons-material/EmailOutlined';
+import LockOpen  from '@mui/icons-material/LockOpen';
+import ButtonBase from '@mui/material/ButtonBase';
 
 function PaperComponent(props) {
     return (

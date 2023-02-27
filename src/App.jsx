@@ -3,7 +3,7 @@ import './App.css';
 import {BrowserRouter,Switch,Route} from 'react-router-dom';
 import LoginPage from './LoginContainer/LoginPage';
 import HomePage from "./HomeContainer/HomePage"
-import ProfilePage from "./Profile/ProfilePage"
+// import ProfilePage from "./Profile/ProfilePage"
 import AboutPage from './About/About';
 
 
@@ -16,7 +16,7 @@ function App(){
                     <Route path="/" exact component={LoginPage} />
                     <Route path="/home" component={HomePage} />
                     <Route path="/about" component={AboutPage} />
-                    <Route path="/profile" component={ProfilePage} /> 
+                    {/* <Route path="/profile" component={ProfilePage} />  */}
                 </Switch>
             </BrowserRouter>
         </div>

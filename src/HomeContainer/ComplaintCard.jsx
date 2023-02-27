@@ -1,5 +1,10 @@
-import { Card, CardHeader, Dialog, DialogContent, DialogTitle } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+
+import CardHeader from '@mui/material/CardHeader';
+import Card from '@mui/material/Card';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import  DialogTitle from '@mui/material/DialogTitle';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 
 const useStyles = makeStyles((theme) => ({

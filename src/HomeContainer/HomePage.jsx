@@ -2,7 +2,24 @@ import React,{useState, useEffect} from 'react';
 import './HomePage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Badge, BottomNavigation, BottomNavigationAction, Button, Card, CardContent, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, Grid, Hidden, makeStyles, Paper, Radio, RadioGroup, TextField } from '@mui/material';
+import Badge from '@mui/material/Badge';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import  CardContent from '@mui/material/CardContent';
+import Dialog from '@mui/material/Dialog';
+import  DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import  DialogTitle from '@mui/material/DialogTitle';
+import  FormControlLabel from '@mui/material/FormControlLabel';
+import  Grid from '@mui/material/Grid';
+import  Hidden from '@mui/material/Hidden';
+import makeStyles from '@mui/styles/makeStyles';
+import Paper from '@mui/material/Paper';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import TextField from '@mui/material/TextField';
 
 
 import Hostell from "@mui/icons-material/RoomServiceOutlined";
